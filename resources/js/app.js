@@ -20,6 +20,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 //Components
 import LandingPage from './components/Pages/LandingPage'
 import ProductPage from './components/Pages/ProductPage'
+import ShopPage from './components/Pages/ShopPage'
+import LoginPage from './components/Pages/LoginPage'
+import SignUpPage from './components/Pages/SignUpPage'
 import NotFound from './components/Pages/NotFound'
 const App = () => {
     return (
@@ -27,7 +30,11 @@ const App = () => {
             <Switch>
                 <Route exact path="/"><LandingPage /></Route>
                 <Route exact path="/product"><ProductPage /></Route>
-                <Route path="/*/*"><NotFound /></Route>
+                <Route exact path="/shop"><ShopPage /></Route>
+                <Route exact path="/login"><LoginPage /></Route>
+                <Route exact path="/signup"><SignUpPage /></Route>
+                <Route exact path="/*/*"><NotFound /></Route>
+                
             </Switch>
         </Router>
     );

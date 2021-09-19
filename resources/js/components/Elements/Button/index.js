@@ -45,12 +45,12 @@ const Button = (props) => {
         }
     } 
     return (
-    <button className={className.join(" ")} onClick={onClick}>{props.children}</button>
+    <button className={className.join(" ")} onClick={onClick} type={props.type}>{props.children}</button>
     )   
 }
 
 Button.propTypes = {
-    type : PropTypes.oneOf(["link","button"]),
+    type : PropTypes.oneOf(["link","button","submit"]),
     className : PropTypes.string,
     href : PropTypes.string,
     isBlock : PropTypes.bool,

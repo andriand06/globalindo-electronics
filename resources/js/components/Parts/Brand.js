@@ -1,12 +1,12 @@
 import React from 'react'
-import Miyako from '../../../../public/images/miyako.jpg'
-import Cosmos from '../../../../public/images/cosmos.png'
-import Maspion from '../../../../public/images/maspion.png'
-import Panasonic from '../../../../public/images/panasonic.png'
-import Polytron from '../../../../public/images/polytron.png'
-import Asus from '../../../../public/images/asus.png'
-import Acer from '../../../../public/images/acer.png'
-import Lenovo from '../../../../public/images/lenovo.png'
+import Miyako from '../../../../public/images/Miyako.svg'
+import Cosmos  from '../../../../public/images/Cosmos.svg'
+import Maspion  from '../../../../public/images/Maspion.svg'
+import Panasonic  from '../../../../public/images/Panasonic.svg'
+import Polytron  from '../../../../public/images/Polytron.svg'
+import Asus  from '../../../../public/images/ASUS.svg'
+import Acer  from '../../../../public/images/acer.svg'
+import Lenovo  from '../../../../public/images/lenovo.svg'
 
 const Brand = () => {
     return (

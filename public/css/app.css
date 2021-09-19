@@ -19995,6 +19995,19 @@ textarea.form-control-lg {
   font-family: "Poppins", sans-serif;
 }
 
+.primary-btn {
+  background-color: #3252DF;
+  color: #ffffff;
+  border-radius: 1rem;
+  border: none;
+}
+.primary-btn:hover {
+  background-color: #ffffff;
+  color: #3252DF;
+  opacity: 0.8;
+  transition: 0.3s all ease-in-out;
+}
+
 .gg-search {
   box-sizing: border-box;
   position: relative;
@@ -20241,13 +20254,13 @@ textarea.form-control-lg {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   margin: 8rem 1rem;
   border-radius: 0.3125rem;
   box-shadow: 0 8px 15px rgba(45, 45, 45, 0.8);
 }
 .container .brands .brand-item {
-  margin: 2rem 0;
-  margin-left: 1.5rem;
+  margin: 2rem 1rem;
 }
 .container .brands .brand-item img {
   width: 100px;
@@ -20255,8 +20268,8 @@ textarea.form-control-lg {
 }
 @media screen and (max-width: 768px) {
   .container .brands .brand-item img {
-    width: 30px;
-    height: 30px;
+    width: 120px;
+    height: 50px;
   }
 }
 .container .brands .brand-item:last-child {
@@ -20379,4 +20392,69 @@ textarea.form-control-lg {
   align-items: center;
   margin-top: 2rem;
   padding: 20px 80px;
+}
+
+.shop-page {
+  padding: 1.5rem 5rem;
+}
+.shop-page .collection-preview {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+.shop-page .collection-preview .title {
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+@media screen and (max-width: 768px) {
+  .shop-page .collection-preview .title {
+    font-size: 20px;
+  }
+}
+.shop-page .collection-preview .preview {
+  display: flex;
+  justify-content: space-between;
+}
+.shop-page .collection-preview .preview .collection-item {
+  width: 22%;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  align-items: center;
+}
+@media screen and (max-width: 768px) {
+  .shop-page .collection-preview .preview .collection-item {
+    height: 200px;
+  }
+}
+.shop-page .collection-preview .preview .collection-item .image {
+  width: 100%;
+  height: 95%;
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 5px;
+  border: 0.5px solid #2d2d2d;
+}
+.shop-page .collection-preview .preview .collection-item .collection-footer {
+  width: 100%;
+  height: 5%;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+@media screen and (max-width: 768px) {
+  .shop-page .collection-preview .preview .collection-item .collection-footer {
+    font-size: 10px;
+  }
+}
+.shop-page .collection-preview .preview .collection-item .collection-footer .name {
+  width: 90%;
+  margin-bottom: 15px;
+}
+
+.container .login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

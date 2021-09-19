@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NotFound = () => {
+const NotFound = (props) => {
     return (
         <div className="text-center">
             <h1 className="clr-primary">OOPS!</h1>

@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('main');
 });
+
+Route::get('/{path?}',function () {
+    return view('main');
+})->where('path','product|shop|login|signup');
