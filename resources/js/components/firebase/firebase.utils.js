@@ -14,7 +14,7 @@ const config =  {
 
   const app = initializeApp(config);
 //   export const fireStore = app.fireStore();
-  const auth = getAuth();
+  export const auth = getAuth();
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt : 'select_account'});
   export const signInWithGoogle = () => signInWithPopup(auth, provider).then((result) => {

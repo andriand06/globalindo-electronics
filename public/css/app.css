@@ -20000,6 +20000,7 @@ textarea.form-control-lg {
   color: #ffffff;
   border-radius: 1rem;
   border: none;
+  margin-top: 1rem;
 }
 .primary-btn:hover {
   background-color: #ffffff;
@@ -20081,6 +20082,31 @@ textarea.form-control-lg {
   width: 22px;
   height: 22px;
   position: relative;
+}
+.gg-profile:hover {
+  cursor: pointer;
+}
+
+.profile-detail {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  right: 40px;
+  top: 55px;
+  z-index: 1;
+  text-align: center;
+  padding: 0.5rem 0.5rem;
+}
+.profile-detail a:hover {
+  text-decoration: none;
+  color: #3252df;
+}
+
+.show {
+  display: block;
 }
 
 .gg-profile::after,
@@ -20452,9 +20478,16 @@ textarea.form-control-lg {
   margin-bottom: 15px;
 }
 
+.container {
+  display: flex;
+  align-items: center;
+}
 .container .login {
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 10px);
+  width: 480px;
+  padding-top: 4rem;
+  flex-direction: column;
 }

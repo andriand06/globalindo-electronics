@@ -31,7 +31,7 @@ class LoginPage extends React.Component {
                     <Input type="password" name="password" label="password" value={this.state.password}
                     handleChange={this.handleChange} required />
                     <Button className="primary-btn" type="submit" isBlock>Sign in</Button>
-                    <Button onClick={signInWithGoogle} className="primary-btn">
+                    <Button onClick={signInWithGoogle} isBlock className="primary-btn">
                         {'  '}
                         Sign in With Google 
                         {' '}
