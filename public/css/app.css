@@ -20000,7 +20000,6 @@ textarea.form-control-lg {
   color: #ffffff;
   border-radius: 1rem;
   border: none;
-  margin-top: 1rem;
 }
 .primary-btn:hover {
   background-color: #ffffff;
@@ -20479,10 +20478,18 @@ textarea.form-control-lg {
 }
 
 .container {
-  display: flex;
   align-items: center;
 }
 .container .login {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 10px);
+  width: 480px;
+  padding-top: 4rem;
+  flex-direction: column;
+}
+.container .signup {
   position: relative;
   top: 50%;
   left: 50%;

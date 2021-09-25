@@ -15,7 +15,8 @@ require('./bootstrap');
 require('./components/Example');
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom'
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 //Components
 import Header from './components/Parts/Header'
@@ -27,22 +28,29 @@ import LoginPage from './components/Pages/LoginPage'
 import SignUpPage from './components/Pages/SignUpPage'
 import NotFound from './components/Pages/NotFound'
 
-import { auth } from './components/firebase/firebase.utils'
+import { auth,createUserProfileDocument } from './components/firebase/firebase.utils'
+import { onSnapshot } from '@firebase/firestore';
+import { Provider } from 'react-redux';
+import store from './redux/store'
+import  setCurrentUser  from './redux/user/user.actions'
 class App extends React.Component {
-    constructor(){
-        super();
-        this.state = {
-            currentUser : null
-        }
-    }
 
     unsubscribeFromAuth = null;
     componentDidMount() {
-        this.unsubscribeFromAuth  = auth.onAuthStateChanged(user => {
-            this.setState({ currentUser : user});
-
-            console.log(user);
-        })
+        
+        //if auth state changedthen get thedata and call createUserProfileDocument method
+        this.unsubscribeFromAuth  = auth.onAuthStateChanged(async userAuth => {
+            if(userAuth){
+                const userRef = await createUserProfileDocument(userAuth);
+                onSnapshot(userRef, (snapshot) => {
+                   store.dispatch(setCurrentUser({
+                            id : snapshot.id,
+                            ...snapshot.data()
+                        }));
+                });
+            }
+            store.dispatch(setCurrentUser(userAuth));
+        });
     }
 
     componentWillUnmount(){
@@ -53,7 +61,7 @@ class App extends React.Component {
             <div>
 
                 <Router>
-                <Header currentUser={this.state.currentUser} />
+                <Header/>
                     <Switch>
                         <Route exact path="/"><LandingPage /></Route>
                         <Route exact path="/product"><ProductPage /></Route>
@@ -70,6 +78,10 @@ class App extends React.Component {
     }
 }
 
-if (document.getElementById("app")) {
-    ReactDOM.render(<App />, document.getElementById("app"));
-}
+if (document.getElementById("root")) {
+    ReactDOM.render(
+    <Provider store={store}>
+    <App />
+    </Provider>, document.getElementById("root")
+    );
+} 

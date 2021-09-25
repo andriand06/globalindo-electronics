@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import { connect } from 'react-redux'
 import { auth } from '../firebase/firebase.utils'
 import Button from '../Elements/Button/index'
 //todo list Header
@@ -32,7 +32,7 @@ const Header = ({currentUser}) => {
                         <div className="profile-detail" id="dropdown-profile">
                                 <p>{currentUser.displayName}</p>
                                 <p>{currentUser.email}</p>
-                                <Link onClick={() => auth.signOut()}>Sign Out</Link>
+                                <Link to="" onClick={() => auth.signOut()}>Sign Out</Link>
                             </div>
                         <i className="gg-shopping-cart"></i>
                     </div>
@@ -49,5 +49,8 @@ const Header = ({currentUser}) => {
     );
 }
 
+const mapStateToProps = state => ({
+    currentUser : state.user.currentUser
+});
 
-export default Header;                                                                      
+export default connect(mapStateToProps)(Header);                                                                         

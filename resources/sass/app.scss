@@ -70,7 +70,6 @@ $primary : #3252df;
     color: #ffffff;
     border-radius: 1rem;
     border: none;
-    margin-top: 1rem;
     &:hover {
         background-color: #ffffff;
         color: #3252DF;
@@ -581,9 +580,8 @@ $primary : #3252df;
 
 
 
-/// Login Page Section ///
+/// Login Page Section and Sign Up Section///
 .container {
-    display: flex;
     align-items: center;
     .login {
         // position: absolute;
@@ -600,5 +598,16 @@ $primary : #3252df;
     
     }
 
+    .signup {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,10px);
+        width: 480px;
+        padding-top: 4rem;
+        flex-direction: column;
+    }
+
 }
+
 
