@@ -17,7 +17,7 @@ require('./components/Example');
 import React from 'react';
 import ReactDOM from 'react-dom'
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect    } from 'react-router-dom';
 //Components
 import Header from './components/Parts/Header'
 import Footer from './components/Parts/Footer'
@@ -34,7 +34,12 @@ import { Provider } from 'react-redux';
 import store from './redux/store'
 import  setCurrentUser  from './redux/user/user.actions'
 class App extends React.Component {
-
+    constructor(){
+        super();
+        this.state = {
+            isLoggedIn : {}
+        }
+    }
     unsubscribeFromAuth = null;
     componentDidMount() {
         
@@ -50,13 +55,16 @@ class App extends React.Component {
                 });
             }
             store.dispatch(setCurrentUser(userAuth));
+            // this.setState({isLoggedIn : store.getState()});
         });
+        
     }
 
     componentWillUnmount(){
         this.unsubscribeFromAuth();
     }
     render() {
+        // console.log(this.state.isLoggedIn);
         return (
             <div>
 
@@ -66,9 +74,11 @@ class App extends React.Component {
                         <Route exact path="/"><LandingPage /></Route>
                         <Route exact path="/product"><ProductPage /></Route>
                         <Route exact path="/shop"><ShopPage /></Route>
+                        {/* <Route exact path="/login">{ this.state.isLoggedIn !== null ? <Redirect to="/"/> : <LoginPage />} </Route> */}
                         <Route exact path="/login"><LoginPage /></Route>
                         <Route exact path="/signup"><SignUpPage /></Route>
-                        <Route exact path="/*/*"><NotFound /></Route>
+                        <Route path="/*"><NotFound /></Route>
+                        <Route path="/*/*"><NotFound /></Route>
                         
                     </Switch>
                 </Router>

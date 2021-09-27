@@ -20066,6 +20066,28 @@ textarea.form-control-lg {
   transform: skew(-12deg);
 }
 
+.profile-detail {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  right: 40px;
+  top: 68px;
+  z-index: 1;
+  text-align: center;
+  padding: 0.5rem 0.5rem;
+}
+.profile-detail a:hover {
+  text-decoration: none;
+  color: #3252DF;
+}
+
+.show {
+  display: block;
+}
+
 .gg-profile,
 .gg-profile::after,
 .gg-profile::before {
@@ -20084,28 +20106,6 @@ textarea.form-control-lg {
 }
 .gg-profile:hover {
   cursor: pointer;
-}
-
-.profile-detail {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  right: 40px;
-  top: 55px;
-  z-index: 1;
-  text-align: center;
-  padding: 0.5rem 0.5rem;
-}
-.profile-detail a:hover {
-  text-decoration: none;
-  color: #3252df;
-}
-
-.show {
-  display: block;
 }
 
 .gg-profile::after,
@@ -20172,6 +20172,7 @@ textarea.form-control-lg {
   float: right;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .header .right-side i {
   margin-right: 1rem;
@@ -20475,6 +20476,27 @@ textarea.form-control-lg {
 .shop-page .collection-preview .preview .collection-item .collection-footer .name {
   width: 90%;
   margin-bottom: 15px;
+}
+.shop-page .collection-preview .preview .collection-item .cart-btn {
+  width: 170px;
+  justify-content: center;
+  opacity: 0.7;
+  border: 1px solid black;
+  position: relative;
+  bottom: 60px;
+  display: none;
+  transition: 0.3s ease-in-out;
+}
+.shop-page .collection-preview .preview .collection-item .cart-btn:hover {
+  background-color: black;
+  color: white;
+}
+.shop-page .collection-preview .preview .collection-item:hover .image {
+  opacity: 0.8;
+}
+.shop-page .collection-preview .preview .collection-item:hover .cart-btn {
+  opacity: 0.85;
+  display: flex;
 }
 
 .container {

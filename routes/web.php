@@ -20,3 +20,11 @@ Route::get('/', function () {
 Route::get('/{path?}',function () {
     return view('main');
 })->where('path','product|shop|login|signup');
+
+Route::get('/{path?}',function () {
+    return view('main');
+});
+Route::get('/{path?}/{subpath?}',function () {
+    return view('main');
+});
+

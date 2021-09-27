@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { auth } from '../firebase/firebase.utils'
 import Button from '../Elements/Button/index'
+import ShoppingCart from '../Elements/ShoppingCart/index'
+import CartDropdown from '../Elements/ShoppingCartDropdown/index'
 //todo list Header
 //Cek user apakah sudah login / belum kalau belum login maka buat tampilan div right side menjadi dua tombol yaitu register dan login
 //apabila user sudah login maka div rightside menjadi sebuah dropdown profile icon
 //dropdown profile berisi setting profile, shopping cart, logout
-const Header = ({currentUser}) => {
+const Header = ({currentUser, hidden}) => {
     const displayDetails = () => {
         document.getElementById("dropdown-profile").classList.toggle("show");
     }
@@ -25,16 +27,18 @@ const Header = ({currentUser}) => {
             {
                 currentUser ? (
                     <div className="right-side">
-                        <a href=""></a>
                         <i className="gg-profile" onClick={displayDetails} >
-                           
                         </i>
                         <div className="profile-detail" id="dropdown-profile">
                                 <p>{currentUser.displayName}</p>
                                 <p>{currentUser.email}</p>
                                 <Link to="" onClick={() => auth.signOut()}>Sign Out</Link>
-                            </div>
-                        <i className="gg-shopping-cart"></i>
+                        </div>
+                        <ShoppingCart />
+                        {
+                            hidden ? null : <CartDropdown />
+                        }
+                        
                     </div>
                 ) : (
 
@@ -49,8 +53,9 @@ const Header = ({currentUser}) => {
     );
 }
 
-const mapStateToProps = state => ({
-    currentUser : state.user.currentUser
+const mapStateToProps = ({user: {currentUser}, cart:{hidden} }) => ({
+    currentUser,
+    hidden
 });
 
 export default connect(mapStateToProps)(Header);                                                                         
