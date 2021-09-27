@@ -34992,7 +34992,7 @@ var ShoppingCart = function ShoppingCart(_ref) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     toggleCartHidden: function toggleCartHidden() {
-      return dispatch((0,_redux_cart_cart_action__WEBPACK_IMPORTED_MODULE_4__["default"])());
+      return dispatch((0,_redux_cart_cart_action__WEBPACK_IMPORTED_MODULE_4__.toggleCartHidden)());
     }
   };
 };
@@ -35738,18 +35738,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _parts_CollectionItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parts/CollectionItem */ "./resources/js/components/parts/CollectionItem.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _excluded = ["id"];
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
 
 
 
@@ -35767,11 +35755,10 @@ var CollectionPreview = function CollectionPreview(_ref) {
       className: "preview",
       children: items.filter(function (item, idx) {
         return idx < 4;
-      }).map(function (_ref2) {
-        var id = _ref2.id,
-            otherProps = _objectWithoutProperties(_ref2, _excluded);
-
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_parts_CollectionItem__WEBPACK_IMPORTED_MODULE_1__["default"], _objectSpread({}, otherProps), id);
+      }).map(function (item) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_parts_CollectionItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          item: item
+        }, item.id);
       })
     })]
   });
@@ -36620,7 +36607,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _Elements_Button_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Elements/Button/index */ "./resources/js/components/Elements/Button/index.js");
 /* harmony import */ var _utils_FormatNumber__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/FormatNumber */ "./resources/js/components/utils/FormatNumber.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _redux_cart_cart_action__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../redux/cart/cart.action */ "./resources/js/redux/cart/cart.action.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 
@@ -36629,34 +36620,47 @@ __webpack_require__.r(__webpack_exports__);
 
 var CollectionItem = function CollectionItem(_ref) {
   var key = _ref.key,
-      name = _ref.name,
-      imageUrl = _ref.imageUrl,
-      price = _ref.price;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      item = _ref.item,
+      addItem = _ref.addItem;
+  var name = item.name,
+      price = item.price,
+      imageUrl = item.imageUrl;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     className: "collection-item",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       className: "image",
       style: {
         backgroundImage: "url(".concat(imageUrl, ")")
       }
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "collection-footer",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
         className: "name",
         children: name
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
         className: "price",
         children: ["Rp ", (0,_utils_FormatNumber__WEBPACK_IMPORTED_MODULE_2__["default"])(price)]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Elements_Button_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Elements_Button_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
       className: "cart-btn",
       isBlock: true,
+      onClick: function onClick() {
+        return addItem(item);
+      },
       children: "Add To Cart"
     })]
   }, key);
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CollectionItem);
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    addItem: function addItem(item) {
+      return dispatch((0,_redux_cart_cart_action__WEBPACK_IMPORTED_MODULE_4__.addItem)(item));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_3__.connect)(null, mapDispatchToProps)(CollectionItem));
 
 /***/ }),
 
@@ -36688,18 +36692,22 @@ var FormatNumber = function FormatNumber(number) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "toggleCartHidden": () => (/* binding */ toggleCartHidden),
+/* harmony export */   "addItem": () => (/* binding */ addItem)
 /* harmony export */ });
 /* harmony import */ var _cart_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cart.types */ "./resources/js/redux/cart/cart.types.js");
-
 
 var toggleCartHidden = function toggleCartHidden() {
   return {
     type: _cart_types__WEBPACK_IMPORTED_MODULE_0__["default"].TOGGLE_CART_HIDDEN
   };
 };
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (toggleCartHidden);
+var addItem = function addItem(item) {
+  return {
+    type: _cart_types__WEBPACK_IMPORTED_MODULE_0__["default"].ADD_ITEM,
+    payload: item
+  };
+};
 
 /***/ }),
 
@@ -36715,6 +36723,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _cart_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cart.types */ "./resources/js/redux/cart/cart.types.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -36723,7 +36743,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var INITIAL_STATE = {
-  hidden: true
+  hidden: true,
+  cartItems: []
 };
 
 var cartReducer = function cartReducer() {
@@ -36734,6 +36755,11 @@ var cartReducer = function cartReducer() {
     case _cart_types__WEBPACK_IMPORTED_MODULE_0__["default"].TOGGLE_CART_HIDDEN:
       return _objectSpread(_objectSpread({}, state), {}, {
         hidden: !state.hidden
+      });
+
+    case _cart_types__WEBPACK_IMPORTED_MODULE_0__["default"].ADD_ITEM:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        cartItems: [].concat(_toConsumableArray(state.cartItems), [action.payload])
       });
 
     default:
@@ -36757,69 +36783,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var CartActionTypes = {
-  TOGGLE_CART_HIDDEN: "TOGGLE_CART_HIDDEN"
+  TOGGLE_CART_HIDDEN: "TOGGLE_CART_HIDDEN",
+  ADD_ITEM: "ADD_ITEM"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CartActionTypes);
-
-/***/ }),
-
-/***/ "./resources/js/redux/profile/profile.reducer.js":
-/*!*******************************************************!*\
-  !*** ./resources/js/redux/profile/profile.reducer.js ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _profile_profile_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../profile/profile.types */ "./resources/js/redux/profile/profile.types.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-var INITIAL_STATE = {
-  hiddenProfile: true
-};
-
-var profileReducer = function profileReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case _profile_profile_types__WEBPACK_IMPORTED_MODULE_0__["default"].TOGGLE_PROFILE_HIDDEN:
-      return _objectSpread(_objectSpread({}, state), {}, {
-        hiddenProfile: !state.hiddenProfile
-      });
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (profileReducer);
-
-/***/ }),
-
-/***/ "./resources/js/redux/profile/profile.types.js":
-/*!*****************************************************!*\
-  !*** ./resources/js/redux/profile/profile.types.js ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-var profileActionTypes = {
-  TOGGLE_PROFILE_HIDDEN: "TOGGLE_PROFILE_HIDDEN"
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (profileActionTypes);
 
 /***/ }),
 
@@ -36834,18 +36801,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _cart_cart_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cart/cart.reducer */ "./resources/js/redux/cart/cart.reducer.js");
 /* harmony import */ var _user_user_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user/user.reducer */ "./resources/js/redux/user/user.reducer.js");
-/* harmony import */ var _profile_profile_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile/profile.reducer */ "./resources/js/redux/profile/profile.reducer.js");
 
 
 
-
-var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
+var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
   user: _user_user_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  cart: _cart_cart_reducer__WEBPACK_IMPORTED_MODULE_0__["default"],
-  profile: _profile_profile_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  cart: _cart_cart_reducer__WEBPACK_IMPORTED_MODULE_0__["default"]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (rootReducer);
 

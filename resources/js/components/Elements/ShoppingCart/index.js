@@ -3,7 +3,7 @@ import Cart from '../../../../../public/images/shopping-bag.svg'
 import "../ShoppingCart/index.scss"
 
 import { connect } from 'react-redux'
-import  toggleCartHidden  from '../../../redux/cart/cart.action'
+import  { toggleCartHidden }  from '../../../redux/cart/cart.action'
 
 const ShoppingCart = ({toggleCartHidden}) => (
     <div className="shopping-cart" onClick={toggleCartHidden}>
