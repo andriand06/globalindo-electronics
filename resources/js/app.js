@@ -24,6 +24,7 @@ import Footer from './components/Parts/Footer'
 import LandingPage from './components/Pages/LandingPage'
 import ProductPage from './components/Pages/ProductPage'
 import ShopPage from './components/Pages/ShopPage'
+import CheckoutPage from './components/Pages/CheckoutPage'
 import LoginPage from './components/Pages/LoginPage'
 import SignUpPage from './components/Pages/SignUpPage'
 import NotFound from './components/Pages/NotFound'
@@ -73,7 +74,8 @@ class App extends React.Component {
                     <Switch>
                         <Route exact path="/"><LandingPage /></Route>
                         <Route exact path="/product"><ProductPage /></Route>
-                        <Route exact path="/shop"><ShopPage /></Route>
+                        <Route path="/shop"><ShopPage /></Route>
+                        <Route exact path="/checkout"><CheckoutPage /></Route>
                         {/* <Route exact path="/login">{ this.state.isLoggedIn !== null ? <Redirect to="/"/> : <LoginPage />} </Route> */}
                         <Route exact path="/login"><LoginPage /></Route>
                         <Route exact path="/signup"><SignUpPage /></Route>

@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::get('/{path?}',function () {
     return view('main');
-})->where('path','product|shop|login|signup');
+})->where('path','product|shop|login|signup|checkout');
 
 Route::get('/{path?}',function () {
     return view('main');

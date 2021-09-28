@@ -5,6 +5,9 @@ import { auth } from '../firebase/firebase.utils'
 import Button from '../Elements/Button/index'
 import ShoppingCart from '../Elements/ShoppingCart/index'
 import CartDropdown from '../Elements/ShoppingCartDropdown/index'
+import { createStructuredSelector } from 'reselect'
+import { selectCartHidden } from '../../redux/cart/cart.selectors'
+import { selectCurrentUser } from '../../redux/user/user.selector'
 //todo list Header
 //Cek user apakah sudah login / belum kalau belum login maka buat tampilan div right side menjadi dua tombol yaitu register dan login
 //apabila user sudah login maka div rightside menjadi sebuah dropdown profile icon
@@ -53,9 +56,9 @@ const Header = ({currentUser, hidden}) => {
     );
 }
 
-const mapStateToProps = ({user: {currentUser}, cart:{hidden} }) => ({
-    currentUser,
-    hidden
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    hidden: selectCartHidden
 });
 
 export default connect(mapStateToProps)(Header);                                                                         
