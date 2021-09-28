@@ -34972,8 +34972,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CartItem_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../CartItem/index */ "./resources/js/components/Elements/CartItem/index.js");
 /* harmony import */ var _Button_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Button/index */ "./resources/js/components/Elements/Button/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _ShoppingCartDropdown_index_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ShoppingCartDropdown/index.scss */ "./resources/js/components/Elements/ShoppingCartDropdown/index.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _redux_cart_cart_selectors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../redux/cart/cart.selectors */ "./resources/js/redux/cart/cart.selectors.js");
+/* harmony import */ var _ShoppingCartDropdown_index_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../ShoppingCartDropdown/index.scss */ "./resources/js/components/Elements/ShoppingCartDropdown/index.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -34984,16 +34986,16 @@ __webpack_require__.r(__webpack_exports__);
 
 var ShoppingCartDropdown = function ShoppingCartDropdown(_ref) {
   var cartItems = _ref.cartItems;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     className: "shopping-cart-dropdown",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       className: "cart-items",
       children: cartItems.map(function (cartItem) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_CartItem_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_CartItem_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
           item: cartItem
         }, cartItem.id);
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Button_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Button_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
       type: "button",
       className: "primary-btn",
       isBlock: true,
@@ -35002,10 +35004,9 @@ var ShoppingCartDropdown = function ShoppingCartDropdown(_ref) {
   });
 };
 
-var mapStateToProps = function mapStateToProps(_ref2) {
-  var cartItems = _ref2.cart.cartItems;
+var mapStateToProps = function mapStateToProps(state) {
   return {
-    cartItems: cartItems
+    cartItems: (0,_redux_cart_cart_selectors__WEBPACK_IMPORTED_MODULE_4__.selectCartItems)(state)
   };
 };
 
@@ -35029,7 +35030,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ShoppingCart_index_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ShoppingCart/index.scss */ "./resources/js/components/Elements/ShoppingCart/index.scss");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _redux_cart_cart_action__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../redux/cart/cart.action */ "./resources/js/redux/cart/cart.action.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _redux_cart_cart_selectors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../redux/cart/cart.selectors */ "./resources/js/redux/cart/cart.selectors.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -35039,16 +35042,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ShoppingCart = function ShoppingCart(_ref) {
-  var toggleCartHidden = _ref.toggleCartHidden;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+  var toggleCartHidden = _ref.toggleCartHidden,
+      itemCount = _ref.itemCount;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     className: "shopping-cart",
     onClick: toggleCartHidden,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
       src: _public_images_shopping_bag_svg__WEBPACK_IMPORTED_MODULE_1__["default"],
       alt: "shopping-cart"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
       className: "item-count",
-      children: "0"
+      children: itemCount
     })]
   });
 };
@@ -35061,7 +35065,15 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_3__.connect)(null, mapDispatchToProps)(ShoppingCart));
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    itemCount: (0,_redux_cart_cart_selectors__WEBPACK_IMPORTED_MODULE_5__.selectCartItemsCount)(state) //mapStateToProps will be keep firing if other state getting called(example currentUser) because reducer dont know that the value we might get is still the same.
+    // to handle this use reselect which as we mentioned in the previous video, will allow us to memoize and not re-render a component if the state value does not change. 
+
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_3__.connect)(mapStateToProps, mapDispatchToProps)(ShoppingCart));
 
 /***/ }),
 
@@ -36822,6 +36834,36 @@ var cartReducer = function cartReducer() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (cartReducer);
+
+/***/ }),
+
+/***/ "./resources/js/redux/cart/cart.selectors.js":
+/*!***************************************************!*\
+  !*** ./resources/js/redux/cart/cart.selectors.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "selectCartItems": () => (/* binding */ selectCartItems),
+/* harmony export */   "selectCartItemsCount": () => (/* binding */ selectCartItemsCount)
+/* harmony export */ });
+/* harmony import */ var reselect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reselect */ "./node_modules/reselect/es/index.js");
+
+
+var selectCart = function selectCart(state) {
+  return state.cart;
+};
+
+var selectCartItems = (0,reselect__WEBPACK_IMPORTED_MODULE_0__.createSelector)([selectCart], function (cart) {
+  return cart.cartItems;
+});
+var selectCartItemsCount = (0,reselect__WEBPACK_IMPORTED_MODULE_0__.createSelector)([selectCartItems], function (cartItems) {
+  return cartItems.reduce(function (accumulatedQuantity, cartItem) {
+    return accumulatedQuantity + cartItem.quantity;
+  }, 0);
+});
 
 /***/ }),
 
@@ -41484,7 +41526,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".cart-item {\n  width: 100%;\n  height: 80px;\n  display: flex;\n  margin-bottom: 15px;\n}\n.cart-item img {\n  width: 30%;\n}\n.cart-item .item-details {\n  width: 70%;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-start;\n  justify-content: center;\n  padding: 10px 20px;\n}\n.cart-item .item-details .name {\n  font-size: 1rem;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".cart-item {\n  width: 100%;\n  height: 80px;\n  display: flex;\n  margin-bottom: 15px;\n}\n.cart-item img {\n  width: 30%;\n}\n.cart-item .item-details {\n  width: 70%;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-start;\n  justify-content: center;\n  padding: 6px 8px;\n}\n.cart-item .item-details .name {\n  font-size: 1rem;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -110124,6 +110166,143 @@ try {
   }
 }
 
+
+/***/ }),
+
+/***/ "./node_modules/reselect/es/index.js":
+/*!*******************************************!*\
+  !*** ./node_modules/reselect/es/index.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "defaultMemoize": () => (/* binding */ defaultMemoize),
+/* harmony export */   "createSelectorCreator": () => (/* binding */ createSelectorCreator),
+/* harmony export */   "createSelector": () => (/* binding */ createSelector),
+/* harmony export */   "createStructuredSelector": () => (/* binding */ createStructuredSelector)
+/* harmony export */ });
+function defaultEqualityCheck(a, b) {
+  return a === b;
+}
+
+function areArgumentsShallowlyEqual(equalityCheck, prev, next) {
+  if (prev === null || next === null || prev.length !== next.length) {
+    return false;
+  }
+
+  // Do this in a for loop (and not a `forEach` or an `every`) so we can determine equality as fast as possible.
+  var length = prev.length;
+  for (var i = 0; i < length; i++) {
+    if (!equalityCheck(prev[i], next[i])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function defaultMemoize(func) {
+  var equalityCheck = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultEqualityCheck;
+
+  var lastArgs = null;
+  var lastResult = null;
+  // we reference arguments instead of spreading them for performance reasons
+  return function () {
+    if (!areArgumentsShallowlyEqual(equalityCheck, lastArgs, arguments)) {
+      // apply arguments instead of spreading for performance.
+      lastResult = func.apply(null, arguments);
+    }
+
+    lastArgs = arguments;
+    return lastResult;
+  };
+}
+
+function getDependencies(funcs) {
+  var dependencies = Array.isArray(funcs[0]) ? funcs[0] : funcs;
+
+  if (!dependencies.every(function (dep) {
+    return typeof dep === 'function';
+  })) {
+    var dependencyTypes = dependencies.map(function (dep) {
+      return typeof dep;
+    }).join(', ');
+    throw new Error('Selector creators expect all input-selectors to be functions, ' + ('instead received the following types: [' + dependencyTypes + ']'));
+  }
+
+  return dependencies;
+}
+
+function createSelectorCreator(memoize) {
+  for (var _len = arguments.length, memoizeOptions = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    memoizeOptions[_key - 1] = arguments[_key];
+  }
+
+  return function () {
+    for (var _len2 = arguments.length, funcs = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      funcs[_key2] = arguments[_key2];
+    }
+
+    var recomputations = 0;
+    var resultFunc = funcs.pop();
+    var dependencies = getDependencies(funcs);
+
+    var memoizedResultFunc = memoize.apply(undefined, [function () {
+      recomputations++;
+      // apply arguments instead of spreading for performance.
+      return resultFunc.apply(null, arguments);
+    }].concat(memoizeOptions));
+
+    // If a selector is called with the exact same arguments we don't need to traverse our dependencies again.
+    var selector = memoize(function () {
+      var params = [];
+      var length = dependencies.length;
+
+      for (var i = 0; i < length; i++) {
+        // apply arguments instead of spreading and mutate a local list of params for performance.
+        params.push(dependencies[i].apply(null, arguments));
+      }
+
+      // apply arguments instead of spreading for performance.
+      return memoizedResultFunc.apply(null, params);
+    });
+
+    selector.resultFunc = resultFunc;
+    selector.dependencies = dependencies;
+    selector.recomputations = function () {
+      return recomputations;
+    };
+    selector.resetRecomputations = function () {
+      return recomputations = 0;
+    };
+    return selector;
+  };
+}
+
+var createSelector = createSelectorCreator(defaultMemoize);
+
+function createStructuredSelector(selectors) {
+  var selectorCreator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : createSelector;
+
+  if (typeof selectors !== 'object') {
+    throw new Error('createStructuredSelector expects first argument to be an object ' + ('where each property is a selector, instead received a ' + typeof selectors));
+  }
+  var objectKeys = Object.keys(selectors);
+  return selectorCreator(objectKeys.map(function (key) {
+    return selectors[key];
+  }), function () {
+    for (var _len3 = arguments.length, values = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+      values[_key3] = arguments[_key3];
+    }
+
+    return values.reduce(function (composition, value, index) {
+      composition[objectKeys[index]] = value;
+      return composition;
+    }, {});
+  });
+}
 
 /***/ }),
 
