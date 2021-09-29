@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectCartItems, selectCartItemsTotal } from '../../redux/cart/cart.selectors';
-import CheckoutItem from '../Elements/CheckoutItem';
+import CheckoutItem from '../Parts/CheckoutItem/index';
 const CheckoutPage = ({cartItems,total}) => (
     <div className="checkout-page">
         <div className="checkout-header">

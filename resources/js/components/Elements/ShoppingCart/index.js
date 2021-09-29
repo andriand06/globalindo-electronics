@@ -4,7 +4,7 @@ import "../ShoppingCart/index.scss"
 
 import { connect } from 'react-redux'
 import  { toggleCartHidden }  from '../../../redux/cart/cart.action'
-import { selectCartItems, selectCartItemsCount } from '../../../redux/cart/cart.selectors'
+import { selectCartItemsCount } from '../../../redux/cart/cart.selectors'
 const ShoppingCart = ({toggleCartHidden, itemCount}) => (
     <div className="shopping-cart" onClick={toggleCartHidden}>
         <img src={Cart} alt="shopping-cart" />

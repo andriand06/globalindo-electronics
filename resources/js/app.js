@@ -32,7 +32,8 @@ import NotFound from './components/Pages/NotFound'
 import { auth,createUserProfileDocument } from './components/firebase/firebase.utils'
 import { onSnapshot } from '@firebase/firestore';
 import { Provider } from 'react-redux';
-import store from './redux/store'
+import { PersistGate } from 'redux-persist/integration/react';
+import {store, persistor} from './redux/store'
 import  setCurrentUser  from './redux/user/user.actions'
 class App extends React.Component {
     constructor(){
@@ -93,7 +94,9 @@ class App extends React.Component {
 if (document.getElementById("root")) {
     ReactDOM.render(
     <Provider store={store}>
-    <App />
+        <PersistGate persistor={persistor}>
+            <App />
+        </PersistGate>
     </Provider>, document.getElementById("root")
     );
 } 
