@@ -75,13 +75,13 @@ class App extends React.Component {
                     <Switch>
                         <Route exact path="/"><LandingPage /></Route>
                         <Route exact path="/product"><ProductPage /></Route>
-                        <Route path="/shop"><ShopPage /></Route>
+                        <Route path="/shop" render={({match}) => <ShopPage match={match} /> } />
                         <Route exact path="/checkout"><CheckoutPage /></Route>
                         {/* <Route exact path="/login">{ this.state.isLoggedIn !== null ? <Redirect to="/"/> : <LoginPage />} </Route> */}
                         <Route exact path="/login"><LoginPage /></Route>
                         <Route exact path="/signup"><SignUpPage /></Route>
-                        <Route path="/*"><NotFound /></Route>
-                        <Route path="/*/*"><NotFound /></Route>
+                        <Route path="/*" render={({history}) => <NotFound history={history} />}/>
+                        <Route path="/*/*" render={({history}) => <NotFound history={history} />} />
                         
                     </Switch>
                 </Router>

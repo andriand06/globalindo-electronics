@@ -8,6 +8,7 @@ import CartDropdown from '../Elements/ShoppingCartDropdown/index'
 import { createStructuredSelector } from 'reselect'
 import { selectCartHidden } from '../../redux/cart/cart.selectors'
 import { selectCurrentUser } from '../../redux/user/user.selector'
+import Hamburger from '../../../../public/images/hamburger.svg'
 //todo list Header
 //Cek user apakah sudah login / belum kalau belum login maka buat tampilan div right side menjadi dua tombol yaitu register dan login
 //apabila user sudah login maka div rightside menjadi sebuah dropdown profile icon
@@ -15,6 +16,9 @@ import { selectCurrentUser } from '../../redux/user/user.selector'
 const Header = ({currentUser, hidden}) => {
     const displayDetails = () => {
         document.getElementById("dropdown-profile").classList.toggle("show");
+    }
+    const displayMenu = () => {
+        document.getElementById("dropdown-menu").classList.toggle("show");
     }
     return (
         <header className="header">
@@ -51,6 +55,13 @@ const Header = ({currentUser, hidden}) => {
                 </div>
                 )
             }
+            <a className="dropdown-icon" onClick={displayMenu}><img src={Hamburger} alt="hamburger-icon" /></a>
+            <div className="dropdown-menu" id="dropdown-menu">
+                <Link to="/">Home</Link>
+                <a href="#about">About</a>
+                <Link to="/product">Product</Link>
+                <a href="#contact">Contact Us</a>
+            </div>
            
         </header>
     );
