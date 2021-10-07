@@ -2,12 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { addItem, clearItemFromCart, removeItem } from '../../../redux/cart/cart.action'
 import "../CheckoutItem/index.scss"
+import FormatNumber from '../../utils/FormatNumber';
 const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
-    const { name, imageUrl, quantity, price } = cartItem;
+    const { name, image, quantity, price } = cartItem;
     return (
     <div className="checkout-item">
         <div className="image-wrapper">
-            <img src={imageUrl} alt="item" />
+            <img src={image} alt="item" />
         </div>
         <span className="name">{name}</span>
         <span className="quantity">
@@ -19,7 +20,7 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
                 &#10095;
             </div>
             </span>
-        <span className="price">{price}</span>
+        <span className="price">Rp.{ FormatNumber(price)}</span>
         <div className="remove-button" onClick={() => clearItem(cartItem)}>&#10005;</div>
     </div>
     );

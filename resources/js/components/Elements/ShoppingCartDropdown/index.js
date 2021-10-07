@@ -21,7 +21,7 @@ const ShoppingCartDropdown = ({cartItems, history}) => (
                 )
             }
         </div>
-        <Button type="button" className="primary-btn" isBlock onClick={() => { 
+        <Button type="button" className="primary-button" isBlock onClick={() => { 
             history.push('/checkout');
             store.dispatch(toggleCartHidden());
         }

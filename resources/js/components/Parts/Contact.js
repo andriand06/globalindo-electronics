@@ -23,7 +23,7 @@ const Contact = () => {
                        <label htmlFor="subject" className="">Subject</label>
                        <input type="text" className="form-control" name="subject" placeholder="Write Something..." />
                    </div>
-                    <button type="submit" className="primary-btn">Submit</button>
+                    <button type="submit" className="primary-button">Submit</button>
                </div>
             </div>
         </section>

@@ -4,10 +4,11 @@ import FormatNumber from '../utils/FormatNumber'
 import { connect } from 'react-redux';
 import { addItem } from '../../redux/cart/cart.action'
 const CollectionItem = ({ key,item, addItem}) => {
-    const { name, price, imageUrl } = item;
+    const { name, price, image } = item;
+    
     return (
     <div key={key} className="collection-item">
-        <div className="image" style={{ backgroundImage: `url(${imageUrl})`}}/>
+        <div className="image" style={{ backgroundImage: `url(${image})`}}/>
         <div className="collection-footer">
             <span className="name">{name}</span>
             <span className="price">Rp {FormatNumber(price)}</span>    

@@ -50,13 +50,13 @@ const Header = ({currentUser, hidden}) => {
                 ) : (
 
                     <div className="right-side">
-                    <Link to="/login" className="login">Login</Link>
-                    <Button type="link" href="/signup" className="primary-btn" isBlock hasShadow>Signup Now!</Button>
+                    <Link to="/signin" className="login">Login</Link>
+                    <Button type="link" href="/signup" className="primary-button" isBlock hasShadow>Signup Now!</Button>
                 </div>
                 )
             }
             <a className="dropdown-icon" onClick={displayMenu}><img src={Hamburger} alt="hamburger-icon" /></a>
-            <div className="dropdown-menu" id="dropdown-menu">
+            <div className="dropdownmenu" id="dropdown-menu">
                 <Link to="/">Home</Link>
                 <a href="#about">About</a>
                 <Link to="/product">Product</Link>

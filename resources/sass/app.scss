@@ -1,7 +1,6 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
@@ -65,7 +64,7 @@ $primary : #3252df;
     box-sizing: border-box;
     font-family: 'Poppins',sans-serif;
 }
-.primary-btn {
+.primary-button {
     background-color: #3252DF;
     color: #ffffff;
     border-radius: 1rem;
@@ -301,7 +300,7 @@ $primary : #3252df;
                 
             }
         }
-        .primary-btn {
+        .primary-button {
             background-color: #3252DF;
             color: #ffffff;
             border-radius: .3125rem;
@@ -328,7 +327,7 @@ $primary : #3252df;
         }
 
     }
-    .dropdown-menu{
+    .dropdownmenu{
         width: 50%;
         height: 18%;
         background-color: white;
@@ -344,10 +343,6 @@ $primary : #3252df;
         a{
             color: black;
         }
-    }
-
-    .show{
-        display: flex;
     }
 
 }
@@ -407,7 +402,7 @@ $primary : #3252df;
                 width: 100px;
                 height: 30px;
             }
-            .primary-btn {
+            .primary-button {
                 background-color: #3252DF;
                 width: 85px;
                 height: 25px;
@@ -478,7 +473,7 @@ $primary : #3252df;
 #contact{
     margin-top: 6rem;
     .contactform{
-        .primary-btn {
+        .primary-button {
             background-color: #3252DF;
             color: #ffffff;
             border-radius: 1rem;
@@ -820,6 +815,37 @@ $primary : #3252df;
             }
         }
     }
+    .checkout-body{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        .left-body{
+            width: 60%;
+            margin-right: 3rem;
+        }
+        .right-body{
+            width: 40%;
+            ul{
+                background-color: #adb5bd;
+                width: 100%;
+                border: 1px solid #2d2d2d;
+                display: flex;
+                flex-direction: column;
+                padding-right: 1.5rem;
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+                li{
+                    list-style-type: none;
+                    border-bottom: 1px solid black;
+                    padding: 6px 6px;
+                   display: flex;
+                   justify-content: space-between;
+                }
+            }
+        }
+    }
     .total {
         margin-top: 30px;
         margin-left: auto;
@@ -827,3 +853,12 @@ $primary : #3252df;
     }
 }
 
+.login-page{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.overflow{
+    overflow-y: auto;
+}

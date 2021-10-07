@@ -10723,8 +10723,8 @@ h1, .h1 {
   flex-shrink: 0;
   width: 100%;
   max-width: 100%;
-  padding-right: calc(var(--bs-gutter-x) * .5);
-  padding-left: calc(var(--bs-gutter-x) * .5);
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-top: var(--bs-gutter-y);
 }
 
@@ -19995,13 +19995,13 @@ textarea.form-control-lg {
   font-family: "Poppins", sans-serif;
 }
 
-.primary-btn {
+.primary-button {
   background-color: #3252DF;
   color: #ffffff;
   border-radius: 1rem;
   border: none;
 }
-.primary-btn:hover {
+.primary-button:hover {
   background-color: #ffffff;
   color: #3252DF;
   opacity: 0.8;
@@ -20215,7 +20215,7 @@ textarea.form-control-lg {
     font-size: smaller;
   }
 }
-.header .right-side .primary-btn {
+.header .right-side .primary-button {
   background-color: #3252DF;
   color: #ffffff;
   border-radius: 0.3125rem;
@@ -20223,7 +20223,7 @@ textarea.form-control-lg {
   padding: 0.15rem 0.15rem;
   text-align: center;
 }
-.header .right-side .primary-btn:hover {
+.header .right-side .primary-button:hover {
   text-decoration: none;
   background-color: #ffffff;
   color: #3252DF;
@@ -20241,7 +20241,7 @@ textarea.form-control-lg {
     display: block;
   }
 }
-.header .dropdown-menu {
+.header .dropdownmenu {
   width: 50%;
   height: 18%;
   background-color: white;
@@ -20255,11 +20255,8 @@ textarea.form-control-lg {
   top: 77px;
   left: 170px;
 }
-.header .dropdown-menu a {
+.header .dropdownmenu a {
   color: black;
-}
-.header .show {
-  display: flex;
 }
 
 .clr-primary {
@@ -20324,7 +20321,7 @@ textarea.form-control-lg {
   width: 100px;
   height: 30px;
 }
-.container .hero .hero-info .primary-btn {
+.container .hero .hero-info .primary-button {
   background-color: #3252DF;
   width: 85px;
   height: 25px;
@@ -20332,7 +20329,7 @@ textarea.form-control-lg {
   border-radius: 0.3125rem;
   border: none;
 }
-.container .hero .hero-info .primary-btn:hover {
+.container .hero .hero-info .primary-button:hover {
   background-color: #ffffff;
   text-decoration: none;
   color: #3252DF;
@@ -20396,13 +20393,13 @@ textarea.form-control-lg {
 #contact {
   margin-top: 6rem;
 }
-#contact .contactform .primary-btn {
+#contact .contactform .primary-button {
   background-color: #3252DF;
   color: #ffffff;
   border-radius: 1rem;
   border: none;
 }
-#contact .contactform .primary-btn:hover {
+#contact .contactform .primary-button:hover {
   background-color: #ffffff;
   color: #3252DF;
   opacity: 0.8;
@@ -20717,8 +20714,50 @@ textarea.form-control-lg {
 .checkout-page .checkout-header .header-block:last-child {
   width: 8%;
 }
+.checkout-page .checkout-body {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.checkout-page .checkout-body .left-body {
+  width: 60%;
+  margin-right: 3rem;
+}
+.checkout-page .checkout-body .right-body {
+  width: 40%;
+}
+.checkout-page .checkout-body .right-body ul {
+  background-color: #adb5bd;
+  width: 100%;
+  border: 1px solid #2d2d2d;
+  display: flex;
+  flex-direction: column;
+  padding-right: 1.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+.checkout-page .checkout-body .right-body ul li {
+  list-style-type: none;
+  border-bottom: 1px solid black;
+  padding: 6px 6px;
+  display: flex;
+  justify-content: space-between;
+}
 .checkout-page .total {
   margin-top: 30px;
   margin-left: auto;
   font-size: 36px;
+}
+
+.login-page {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.overflow {
+  overflow-y: auto;
 }

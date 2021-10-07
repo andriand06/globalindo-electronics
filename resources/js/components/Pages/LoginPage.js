@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Header from '../Parts/Header'
+import Footer from '../Parts/Footer'
 import Input from '../Elements/Input/index'
 import Button from '../Elements/Button/index'
 import { signInWithGoogle,signInWithEmail } from '../firebase/firebase.utils'
@@ -29,6 +31,8 @@ class LoginPage extends React.Component {
     }
     render(){
         return (
+             <>
+        <Header />
         <div className="container">
             <div className="login">
                 <h2 className="clr-primary">I already have an account</h2>
@@ -37,8 +41,8 @@ class LoginPage extends React.Component {
                     <Input type="email" name="email" label="Email" handleChange={this.handleChange} value={this.state.email} required />
                     <Input type="password" name="password" label="Password" value={this.state.password}
                     handleChange={this.handleChange} required />
-                    <Button className="primary-btn" type="submit" isBlock>Sign in</Button>
-                    <Button onClick={signInWithGoogle} isBlock className="primary-btn">
+                    <Button className="primary-button" type="submit" isBlock>Sign in</Button>
+                    <Button onClick={signInWithGoogle} isBlock className="primary-button">
                         {'  '}
                         Sign in With Google 
                         {' '}
@@ -49,6 +53,8 @@ class LoginPage extends React.Component {
                     </span>
             </div>
         </div>
+        <Footer />
+        </>
         );
     }
 }

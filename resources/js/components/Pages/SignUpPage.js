@@ -51,6 +51,8 @@ class SignUpPage extends React.Component {
     render() {
         const { displayName, email, password, confirmPassword }  = this.state;
         return (
+         <>
+            <Header />
             <div className="container">
                 <div className="signup">
                     <h2 className="clr-primary">I do not have a account</h2>
@@ -62,10 +64,12 @@ class SignUpPage extends React.Component {
                         handleChange={this.handleChange} required />
                         <Input type="password" name="confirmPassword" label="Confirm Password" value={confirmPassword}
                         handleChange={this.handleChange} required />
-                        <Button className="primary-btn" type="submit" isBlock>Sign Up</Button>
+                        <Button className="primary-button" type="submit" isBlock>Sign Up</Button>
                     </form>
                 </div>
             </div>
+            <Footer />
+        </>
         );
     }
 }

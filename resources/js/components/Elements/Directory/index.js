@@ -1,22 +1,28 @@
-import React, {Component} from 'react'
-import MenuItem from '../MenuItem/index'
-import "../Directory/index.scss"
-import SECTIONS_DATA from '../../data/sections.data'
+import React, {useEffect, useState} from 'react'
+import axios from 'axios'
+import MenuItem from '../MenuItem';
+import '../Directory/index.scss';
+const Directory = () => {
+    const [sections, setSections ] = useState([]);
 
-import { connect } from 'react-redux'
-import { createStructuredSelector } from 'reselect'
-import { selectDirectorySections } from '../../../redux/directory/directory.selector'
- const Directory = ({sections}) => (
-    <div className="directory-menu">
-        {
-            sections.map(({id, ...otherSectionProps}) => (
-                <MenuItem key={id} {...otherSectionProps} />
-            ))
-        }
-    </div>
-);
+    useEffect(() => {
+        axios.get('/api/collections')
+            .then(res => {
+                 setSections(res.data.data.data) 
+                })
+    },[]);
 
-const mapStateToProps = createStructuredSelector({
-    sections: selectDirectorySections
-})
-export default connect(mapStateToProps)(Directory);
+    return(
+            sections.length > 0 && (
+                <div className="directory-menu">
+                {
+                    sections.map(({id, ...otherSectionProps}) => (
+                        <MenuItem key={id} {...otherSectionProps} />
+                    ))
+                }
+            </div>
+            ) 
+    );
+}
+
+export default Directory;

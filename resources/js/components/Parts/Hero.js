@@ -10,7 +10,7 @@ const Hero = () => {
                         <h2><span className="clr-blue">An Exciting Place <br /></span> for the whole family to shop.</h2>
                         <label htmlFor="" className="text-gray-500">Our best Product within this years, ready to comfort your daily.</label>
                     </div>
-                    <Button type="link" href="/shop" hasShadow className="primary-btn">Shop Now</Button>
+                    <Button type="link" href="/shop" hasShadow className="primary-button">Shop Now</Button>
                 </div>
                 <div className="hero-image">
                     <img src={HeroImage} alt="Mac Pro" className="hero-product" />
