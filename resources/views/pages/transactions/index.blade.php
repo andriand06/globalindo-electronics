@@ -6,6 +6,12 @@
         <div class="card-header">
            Daftar Transaksi Masuk
         </div>
+        @if (Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success')}}
+        </div>
+        
+    @endif
          <div class="card-body">
                         <div class="table-stats order-table ov-h">
                             <table class="table">
@@ -29,7 +35,7 @@
                                         <td>{{ $i->email}}</td>
                                         <td>{{ $i->phone}}</td>
                                         <td>{{ $i->address}}</td>
-                                        <td>${{ $i->total}}</td>
+                                        <td>Rp.{{ $i->total}}</td>
                                         <td>
                                             @if ($i->status == "PENDING")
                                                 <span class="badge badge-info">
@@ -45,16 +51,16 @@
                                         </td>
                                         <td>
                                             @if ($i->status == "PENDING")
-                                                <a href="{{ route('transaction.status', $i->id) }}?status=SUCCESS" class="btn btn-success btn-sm"><i class="fa fa-check"></i></a>
-                                                <a href="{{ route('transaction.status', $i->id) }}?status=FAILED" class="btn btn-danger btn-sm"><i class="fa fa-times"></i></a>
+                                                <a href="{{ route('transactions.status', $i->id) }}?status=SUCCESS" class="btn btn-success btn-sm"><i class="fa fa-check"></i></a>
+                                                <a href="{{ route('transactions.status', $i->id) }}?status=FAILED" class="btn btn-danger btn-sm"><i class="fa fa-times"></i></a>
                                             @endif
-                                            <a href="#mymodal" data-remote="{{ route('transaction.show', $i->id)}}" data-toggle="modal" data-target="#mymodal" data-title="Detail Transaksi {{ $i->uuid}}" class="btn btn-info btn-sm">
+                                            <a href="#mymodal" data-remote="{{ route('transactions.show', $i->id)}}" data-toggle="modal" data-target="#mymodal" data-title="Detail Transaksi {{ $i->id}}" class="btn btn-info btn-sm">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('transaction.edit', $i->id)}}" class="btn btn-pencil btn-sm">
+                                            <a href="{{ route('transactions.edit', $i->id)}}" class="btn btn-pencil btn-sm">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
-                                            <form action="{{ route('transaction.destroy', $i->id)}}" method="POST" class="d-inline">
+                                            <form action="{{ route('transactions.destroy', $i->id)}}" method="POST" class="d-inline">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="btn btn-danger btn-sm" onclick="return confirm('hapus data ini?')">

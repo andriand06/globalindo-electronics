@@ -5,6 +5,7 @@ use App\Http\Controllers\CollectionsController;
 use App\Http\Controllers\CollectionItemsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransactionsController;
+use App\Models\Transactions;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,7 @@ Route::get('/collections/{id}/items',[CollectionsController::class,'items'])->na
 Route::resource('collections',CollectionsController::class);
 Route::resource('collectionitems',CollectionItemsController::class);
 Route::resource('transactions',TransactionsController::class);
+Route::get('/transactions/{id}/set-status',[TransactionsController::class, 'setStatus'])->name('transactions.status');
 Route::get('/{path?}',function () {
     return view('main');
 })->where('path','product|shop|signin|signup|checkout');

@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Transactions;
 class TransactionsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +17,8 @@ class TransactionsController extends Controller
      */
     public function index()
     {
-        //
+        $items = Transactions::all();
+        return view('pages.transactions.index')->with(['items' => $items]);
     }
 
     /**
@@ -34,12 +39,6 @@ class TransactionsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        Transactions::create($data);
-
-        session()->flash('success','Berhasil Tambah Data!');
-        return redirect()->view('pages.transactions.success');
-
     }
 
     /**
@@ -61,7 +60,8 @@ class TransactionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Transactions::findOrFail($id);
+        return view('pages.transactions.edit')->with(['item' => $item]);
     }
 
     /**
@@ -84,6 +84,23 @@ class TransactionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Transactions::findOrFail($id);
+
+        $data->delete();
+        session()->flash('success','Berhasil Hapus Data');
+        return redirect()->route('transactions.index');
+    }
+    public function setStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:PENDING,SUCCESS,FAILED'
+        ]);
+
+        $item = Transactions::findOrFail($id);
+        //dd($item->transaction_status    );
+        $item->status = $request->status;
+        $item->save();
+
+        return redirect()->route('transactions.index');
     }
 }
