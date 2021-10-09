@@ -12,8 +12,9 @@ class Transactions extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
+    public $incrementing = false;
     protected $fillable = [
+        'id',
         'name',
         'email',
         'phone',
@@ -21,12 +22,8 @@ class Transactions extends Model
         'total',
         'status'
     ];
-    public function collections()
+    public function details()
     {
-        return $this->hasMany(Collections::class,'collections_id');
-    }
-    public function items()
-    {
-        return $this->hasMany(CollectionItems::class,'items_id');
+        return $this->hasMany(TransactionDetails::class,'transactions_id');
     }
 }

@@ -18,6 +18,7 @@ class TransactionsController extends Controller
     public function store(Request $request)
     {
         $data = [
+            'id' => $request->input('transactionId'),
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'phone' => $request->input('phone'),

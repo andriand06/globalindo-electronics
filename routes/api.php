@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\CollectionsController;
 use App\Http\Controllers\API\TransactionsController;
+use App\Http\Controllers\API\TransactionDetailsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::get('/collections',[CollectionsController::class,'all']);
 Route::post('/transactions/store',[TransactionsController::class, 'store']);
+Route::post('/transactiondetails/store',[TransactionDetailsController::class,'store']);

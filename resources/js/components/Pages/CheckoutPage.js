@@ -16,10 +16,29 @@ const CheckoutPage = ({cartItems,total,history}) => {
     const [address, setAddress] = useState('');
     const [_total, setTotal] = useState(total);
     const [_status, setStatus] = useState('PENDING');
+    const getTransactionId = () => {
+        const date = new Date();
+        const hours = String(date.getHours());
+        const minutes = String(date.getMinutes());
+        var day = String(date.getDate());
+        var month = String(date.getMonth()+1);
+        const year = String(date.getFullYear());
+        if(day < 10) 
+        {
+            day = '0' + day;
+        }
+        if(month < 10)
+        {
+            month = '0' + month;
+        }
+        const dateInNumber = day.concat(month,year,hours,minutes);
+        const transactionId = 'TRX' + dateInNumber;
+        return transactionId;
+    }
     const handleSubmit = (e) => {
-        e.preventDefault();
-
+        e.preventDefault()
         const data = {
+            transactionId : getTransactionId(),
             name: name,
             email: email,
             phone: phone,
@@ -27,7 +46,32 @@ const CheckoutPage = ({cartItems,total,history}) => {
             total : _total,
             status : _status,
         };
+      
         axios.post('/api/transactions/store', data)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        const cartItemsArray = Object.values(cartItems);
+        var collections_id = [];
+        var items_id = [];
+        var quantity = [];
+        for(const items of cartItemsArray)
+        {
+            console.log(items);
+            collections_id.push(items.collections_id); 
+            items_id.push(items.id);
+            quantity.push(items.quantity);
+        }
+        const transactionItems = {
+            transactions_id: getTransactionId(),
+            collections_id: collections_id,
+            items_id: items_id,
+            quantity: quantity
+        };
+        axios.post('/api/transactiondetails/store',transactionItems)
             .then(res => {
                 console.log(res)
             })

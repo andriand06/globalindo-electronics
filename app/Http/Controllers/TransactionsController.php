@@ -17,8 +17,8 @@ class TransactionsController extends Controller
      */
     public function index()
     {
-        $items = Transactions::all();
-        return view('pages.transactions.index')->with(['items' => $items]);
+        $data = Transactions::all();
+        return view('pages.transactions.index')->with(['data' => $data]);
     }
 
     /**
@@ -49,7 +49,10 @@ class TransactionsController extends Controller
      */
     public function show($id)
     {
-        //
+        $collections = Transactions::with('details.collections')->findOrFail($id);
+        $items = Transactions::with('details')->findOrFail($id);
+
+        return view('pages.transactions.show')->with(['collections' => $collections],['items' => $items]);
     }
 
     /**

@@ -37123,9 +37123,31 @@ var CheckoutPage = function CheckoutPage(_ref) {
       _status = _useState12[0],
       setStatus = _useState12[1];
 
+  var getTransactionId = function getTransactionId() {
+    var date = new Date();
+    var hours = String(date.getHours());
+    var minutes = String(date.getMinutes());
+    var day = String(date.getDate());
+    var month = String(date.getMonth() + 1);
+    var year = String(date.getFullYear());
+
+    if (day < 10) {
+      day = '0' + day;
+    }
+
+    if (month < 10) {
+      month = '0' + month;
+    }
+
+    var dateInNumber = day.concat(month, year, hours, minutes);
+    var transactionId = 'TRX' + dateInNumber;
+    return transactionId;
+  };
+
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     var data = {
+      transactionId: getTransactionId(),
       name: name,
       email: email,
       phone: phone,
@@ -37134,6 +37156,30 @@ var CheckoutPage = function CheckoutPage(_ref) {
       status: _status
     };
     axios__WEBPACK_IMPORTED_MODULE_10___default().post('/api/transactions/store', data).then(function (res) {
+      console.log(res);
+    })["catch"](function (error) {
+      console.log(error);
+    });
+    var cartItemsArray = Object.values(cartItems);
+    var collections_id = [];
+    var items_id = [];
+    var quantity = [];
+
+    for (var _i2 = 0, _cartItemsArray = cartItemsArray; _i2 < _cartItemsArray.length; _i2++) {
+      var items = _cartItemsArray[_i2];
+      console.log(items);
+      collections_id.push(items.collections_id);
+      items_id.push(items.id);
+      quantity.push(items.quantity);
+    }
+
+    var transactionItems = {
+      transactions_id: getTransactionId(),
+      collections_id: collections_id,
+      items_id: items_id,
+      quantity: quantity
+    };
+    axios__WEBPACK_IMPORTED_MODULE_10___default().post('/api/transactiondetails/store', transactionItems).then(function (res) {
       console.log(res);
     })["catch"](function (error) {
       console.log(error);
@@ -38000,22 +38046,22 @@ __webpack_require__.r(__webpack_exports__);
 
 var Success = function Success() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    "class": "d-flex success-checkout align-items-center justify-content-center",
+    className: "d-flex success-checkout align-items-center justify-content-center",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      "class": "col col-lg-4 text-center",
+      className: "col col-lg-4 text-center",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
         src: _public_images_success_buy_png__WEBPACK_IMPORTED_MODULE_1__["default"],
         alt: "",
         width: "294"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
-        "class": "mt-4",
+        className: "mt-4",
         children: "Terima kasih telah belanja di Globalindo Electronics."
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-        "class": "mt-2",
+        className: "mt-2",
         children: "Pesanan Anda akan kami proses, Silakan tunggu update terbaru dari kami via email yang sudah Anda daftarkan sebelumnya."
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
         href: "/",
-        "class": "primary-btn pd-cart mt-3",
+        className: "primary-btn pd-cart mt-3",
         children: "Back to Home"
       })]
     })
