@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TransactionDetails;
 use Illuminate\Http\Request;
 use App\Models\Transactions;
+
 class TransactionsController extends Controller
 {
     public function __construct()
@@ -49,10 +51,11 @@ class TransactionsController extends Controller
      */
     public function show($id)
     {
-        $collections = Transactions::with('details.collections')->findOrFail($id);
-        $items = Transactions::with('details')->findOrFail($id);
-
-        return view('pages.transactions.show')->with(['collections' => $collections],['items' => $items]);
+        
+        $collections_id = TransactionDetails::with('collections')->findOrFail($id);
+        // dd($collections_id);
+        return view('pages.transactions.show')->with([
+            'collections_id' => $collections_id]);
     }
 
     /**
@@ -76,7 +79,11 @@ class TransactionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $item = Transactions::findOrFail($id);
+        $item->update($data);
+        session()->flash('success','Berhasil Update Data!');
+        return redirect()->route('transactions.index');
     }
 
     /**

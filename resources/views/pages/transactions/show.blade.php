@@ -1,28 +1,28 @@
 <table class="table table-bordered">
-    <tr>
+    {{-- <tr>
         <th>Nama</th>
-        <td>{{ $item->name }}</td>
+        <td>{{ $items->name }}</td>
     </tr>
     <tr>
         <th>Email</th>
-        <td>{{ $item->email }}</td>
+        <td>{{ $items->email }}</td>
     </tr>
     <tr>
         <th>Nomor</th>
-        <td>{{ $item->phone }}</td>
+        <td>{{ $items->phone }}</td>
     </tr>
     <tr>
         <th>Alamat</th>
-        <td>{{ $item->address }}</td>
+        <td>{{ $items->address }}</td>
     </tr>
     <tr>
         <th>Total Transaksi</th>
-        <td>{{ $item->total }}</td>
+        <td>{{ $items->total }}</td>
     </tr>
     <tr>
         <th>Status Transaksi</th>
-        <td>{{ $item->status }}</td>
-    </tr>
+        <td>{{ $items->status }}</td>
+    </tr> --}}
     <tr>
         <th>Pembelian Produk</th>
         <td>
@@ -34,20 +34,20 @@
                     <th>Kuantitas</th>
                     <th>Harga</th>
                 </tr>
-                @foreach ($item->details as $detail)
+                {{-- @foreach ($items->details as $detail)
                     <tr>
                         <td> {{ $detail->name }}</td>
                         <td> {{ $detail->name }}</td>
                         <td> {{ $detail->type }}</td>
                         <td> {{ $detail->quantity }}</td>
-                        <td>${{ $detail->price }}</td>
+                        <td>{{ $detail->price }}</td>
                     </tr>
-                @endforeach
+                @endforeach --}}
             </table>
         </td>
     </tr>
 </table>
-<div class="row">
+{{-- <div class="row">
     <div class="col-4">
         <a href="{{ route('transactions.status',$item->id)}}?status=SUCCESS" class="btn btn-success btn-block">
             <i class="fa fa-check"></i> Set Sukses
@@ -63,4 +63,4 @@
             <i class="fa fa-spinner"></i> Set Pending
         </a>
     </div>
-</div>
+</div> --}}

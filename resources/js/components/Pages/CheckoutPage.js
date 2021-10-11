@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useRef } from 'react'
 import { connect } from 'react-redux';
 import Header from '../Parts/Header';
 import Footer from '../Parts/Footer';
@@ -8,6 +8,7 @@ import { createStructuredSelector } from 'reselect';
 import { selectCartItems, selectCartItemsTotal } from '../../redux/cart/cart.selectors';
 import CheckoutItem from '../Parts/CheckoutItem/index';
 import FormatNumber from '../utils/FormatNumber'
+import emailjs from 'emailjs-com';
 import axios from 'axios';
 const CheckoutPage = ({cartItems,total,history}) => {
     const [name, setName ] = useState('');
@@ -18,8 +19,8 @@ const CheckoutPage = ({cartItems,total,history}) => {
     const [_status, setStatus] = useState('PENDING');
     const getTransactionId = () => {
         const date = new Date();
-        const hours = String(date.getHours());
-        const minutes = String(date.getMinutes());
+        var hours = String(date.getHours());
+        var minutes = String(date.getMinutes());
         var day = String(date.getDate());
         var month = String(date.getMonth()+1);
         const year = String(date.getFullYear());
@@ -31,10 +32,19 @@ const CheckoutPage = ({cartItems,total,history}) => {
         {
             month = '0' + month;
         }
+        if(hours < 10)
+        {
+            hours = '0' + hours;
+        }
+        if(minutes < 10)
+        {
+            minutes = '0' + minutes;
+        }
         const dateInNumber = day.concat(month,year,hours,minutes);
         const transactionId = 'TRX' + dateInNumber;
         return transactionId;
     }
+    const form = useRef();
     const handleSubmit = (e) => {
         e.preventDefault()
         const data = {
@@ -78,6 +88,13 @@ const CheckoutPage = ({cartItems,total,history}) => {
             .catch(error => {
                 console.log(error);
             });
+            emailjs.sendForm('service_kbvg4qc', 'checkout_form', form.current, 'user_rU1RvqMox6Fljlpv00bv9')
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
+            e.target.reset();
             alert('data berhasil dikirim!');
             history.push('/success');
     }
@@ -124,7 +141,7 @@ const CheckoutPage = ({cartItems,total,history}) => {
                 <span>Silahkan isi data anda terlebih dahulu dan lakukan pembayaran ke no rekening yang tertera lalu Klik Already Paid</span>
             <div className="checkout-body">
                 <div className="left-body">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} ref={form}>
                         <Input type="text" name="name" label="Nama Lengkap" handleChange={handleName} required value={name} />
                         <Input type="text" name="email" label="Email Address" handleChange={handleEmail} required value={email} />
                         <Input type="text" name="phone" label="Phone Number" handleChange={handlePhone} required value={phone} />

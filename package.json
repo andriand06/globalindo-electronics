@@ -31,6 +31,7 @@
         "tailwindcss": "^2.0.2"
     },
     "dependencies": {
+        "emailjs-com": "^3.2.0",
         "firebase": "^9.0.2",
         "lodash.memoize": "^4.1.2",
         "node-sass": "^6.0.1",

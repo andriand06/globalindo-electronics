@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CollectionsController;
 use App\Http\Controllers\CollectionItemsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TransactionDetailsController;
 use App\Http\Controllers\TransactionsController;
 use App\Models\Transactions;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +25,6 @@ Route::get('/', function () {
 }); 
 Route::get('/dashboard',[DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::get('/login',[AuthenticatedSessionController::class,'create'])->name('login');
-Route::get('/checkoutdetails',[CheckoutController::class,'index'])->name('checkoutdetails');
 Route::get('/collections/{id}/items',[CollectionsController::class,'items'])->name('collections.items');
 Route::resource('collections',CollectionsController::class);
 Route::resource('collectionitems',CollectionItemsController::class);
