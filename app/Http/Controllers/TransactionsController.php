@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CollectionItems;
 use App\Models\TransactionDetails;
 use Illuminate\Http\Request;
 use App\Models\Transactions;
@@ -52,10 +53,17 @@ class TransactionsController extends Controller
     public function show($id)
     {
         
-        $collections_id = TransactionDetails::with('collections')->findOrFail($id);
-        // dd($collections_id);
+        $data = Transactions::with('details.items')->findOrFail($id);
+        $items = explode(',',$data->details[0]->items_id);
+        $collection = explode(',',$data->details[0]->collections_id);
+        $quantity = explode(',',$data->details[0]->quantity);
+        $item = CollectionItems::whereIn('id',$items)->get();
+
+        // dd($data->details[0]);
         return view('pages.transactions.show')->with([
-            'collections_id' => $collections_id]);
+            'item' => $item,
+            'data' => $data,
+            'quantity' => $quantity ]);
     }
 
     /**

@@ -20,7 +20,7 @@ const Footer = () => {
             <div className="getintouch">
                 <ul>
                     <p>Get in Touch</p>
-                    <li>globalindoelectronics@gmail.com</li>
+                    <li>globalindo@gmail.com</li>
                     <li><a href="https://api.whatsapp.com/send/?phone=+6281363883325">+62 813 6388 3325</a></li>
                 </ul>
             </div>

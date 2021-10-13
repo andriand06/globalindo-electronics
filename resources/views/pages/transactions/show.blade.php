@@ -1,28 +1,28 @@
 <table class="table table-bordered">
-    {{-- <tr>
+    <tr>
         <th>Nama</th>
-        <td>{{ $items->name }}</td>
+        <td>{{ $data->name }}</td>
     </tr>
     <tr>
         <th>Email</th>
-        <td>{{ $items->email }}</td>
+        <td>{{ $data->email }}</td>
     </tr>
     <tr>
         <th>Nomor</th>
-        <td>{{ $items->phone }}</td>
+        <td>{{ $data->phone }}</td>
     </tr>
     <tr>
         <th>Alamat</th>
-        <td>{{ $items->address }}</td>
+        <td>{{ $data->address }}</td>
     </tr>
     <tr>
         <th>Total Transaksi</th>
-        <td>{{ $items->total }}</td>
+        <td>{{ $data->total }}</td>
     </tr>
     <tr>
         <th>Status Transaksi</th>
-        <td>{{ $items->status }}</td>
-    </tr> --}}
+        <td>{{ $data->status }}</td>
+    </tr>
     <tr>
         <th>Pembelian Produk</th>
         <td>
@@ -30,19 +30,17 @@
                 <tr>
                     <th>Nama Koleksi</th>
                     <th>Nama Items</th>
-                    <th>Tipe</th>
-                    <th>Kuantitas</th>
                     <th>Harga</th>
                 </tr>
-                {{-- @foreach ($items->details as $detail)
+                @foreach ($item as $detail)
                     <tr>
-                        <td> {{ $detail->name }}</td>
-                        <td> {{ $detail->name }}</td>
-                        <td> {{ $detail->type }}</td>
-                        <td> {{ $detail->quantity }}</td>
+                        <td> {{ $detail->collections_id }}</td>
+                        <td> {{ $detail->name }}</td> 
                         <td>{{ $detail->price }}</td>
                     </tr>
-                @endforeach --}}
+                @endforeach
+                    
+                
             </table>
         </td>
     </tr>
