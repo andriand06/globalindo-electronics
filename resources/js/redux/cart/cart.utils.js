@@ -21,3 +21,6 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
         {...cartItem,quantity : cartItem.quantity - 1} : cartItem
     );
 };
+export const removeAllItem = (cartItems) => {
+    return cartItems.splice(0,cartItems.length);
+}

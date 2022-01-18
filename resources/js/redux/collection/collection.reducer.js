@@ -1,3 +1,5 @@
+import { collection } from "firebase/firestore";
+import { CollectionActionTypes } from "./collection.types";
 
 const INITIAL_STATE = {
     collections : [
@@ -161,6 +163,10 @@ const INITIAL_STATE = {
 
 const collectionReducer = (state = INITIAL_STATE, action) => {
     switch(action.type)  {
+        case CollectionActionTypes.SELECT_COLLECTION_FOR_PREVIEW :
+            return {
+                ...state,
+            }
         default:
             return state;
     }

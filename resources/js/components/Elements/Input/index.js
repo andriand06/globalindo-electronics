@@ -1,5 +1,6 @@
 import React from 'react'
 import '../Input/index.scss'
+import { GroupContainer, FormInput } from './Input.styles';
 const Input = ({ handleChange, label, ...otherProps}) => (
     <div className="group">
         <input className="form-input" onChange={handleChange} {...otherProps} />

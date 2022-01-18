@@ -8,12 +8,24 @@ use Illuminate\Http\Request;
 
 class TransactionsController extends Controller
 {
-    public function get(Request $request)
+    public function all(Request $request)
     {
-     
-        return ResponseFormatter::success(
-            'Data Koleksi berhasil disimpan'
-        );
+        $id = $request->input('id');
+        if($id)
+        {
+            $transactions = Transactions::findOrFail($id);
+            if($transactions)
+            {
+                return ResponseFormatter::success(
+                    $transactions,'Data Transaksi berhasil diambil'
+                );
+            }
+            else
+            {
+                return ResponseFormatter::error(null,'Data Transaksi tidak ada',404);
+            }
+        }
+       
     }
     public function store(Request $request)
     {
@@ -34,5 +46,43 @@ class TransactionsController extends Controller
                'Data berhasil disimpan'
            );
        }
+    }
+    public function getStatus(Request $request)
+    {
+        $id = $request->input('id');
+        if($id)
+        {
+            $transactions = Transactions::findOrFail($id);
+            if($transactions)
+            {
+                return ResponseFormatter::success(
+                    $transactions->status,'Status Transaksi berhasil diambil'
+                );
+            }
+            else
+            {
+                return ResponseFormatter::error(null,'Data Transaksi tidak ada',404);
+            }
+        }
+    }
+    public function setStatus(Request $request)
+    {
+        $id = $request->input('id');
+        $status = $request->input('status');
+        if($id && $status)
+        {
+            $transaction = Transactions::findOrFail($id);
+            if($transaction)
+            {
+                $transaction->status = $status;
+                $transaction->save();
+                return ResponseFormatter::success(
+                    $transaction->status,'Status Transaksi berhasil diubah'
+                );
+            }
+            else{
+                return ResponseFormatter::error(null,'Data Transaksi tidak ada',404);
+            }
+        }
     }
 }

@@ -34,6 +34,7 @@
                             <div class="text-left dib">
                                 <div class="stat-text"><span class="count">{{ $sales }}</span></div>
                                 <div class="stat-heading">Penjualan</div>
+                              
                             </div>
                         </div>
                     </div>
@@ -67,7 +68,7 @@
                                     <tr>
                                         <td>{{ $i->id}}</td>
                                         <td>{{ $i->name}}</td>
-                                        <td>{{ $i->email}}</td>
+                                        <td >{{ $i->email}}</td>
                                         <td>{{ $i->phone}}</td>
                                         <td>${{ $i->total}}</td>
                                         <td>
@@ -103,7 +104,7 @@
                     <div class="col-lg-6 col-xl-12">
                         <div class="card br-0">
                             <div class="card-body">
-                                <div class="chart-container ov-h">
+                                <div class="chart-container ov-h" >
                                     <div id="flotPie1" class="float-chart"></div>
                                 </div>
                             </div>
@@ -123,7 +124,6 @@
 <script>
      jQuery(document).ready(function($) {
         "use strict";
-
         // Pie chart flotPie1
         var piedata = [
             { label: "Pending", data: [[1,{{ $pie['PENDING']}}]], color: '#5c6bc0'},

@@ -45,13 +45,24 @@
                     <input type="number" class="form-control @error('quantity')
                         is-invalid
                     @enderror" name="quantity" required value="{{ old('quantity')}}">
-                </div>
+                </div>      
+                @if ($user[0]->role == 'Owner')
+                    <div class="form-group">
+                        <label for="base_price" class="form-control-label">Base Price Items</label>
+                        <input type="number" class="form-control @error('base_price')
+                            is-invalid
+                        @enderror" name="base_price" required value="{{ old('base_price')}}">
+                    </div>
+                @else
                 <div class="form-group">
-                    <label for="base_price" class="form-control-label">Base Price Items</label>
-                    <input type="number" class="form-control @error('base_price')
+                    
+                    <input type="hidden" class="form-control @error('base_price')
                         is-invalid
-                    @enderror" name="base_price" required value="{{ old('base_price')}}">
+                    @enderror" name="base_price" required value="0">
                 </div>
+                @endif
+           
+               
                 <div class="form-group">
                     <label for="is_default" class="form-control-label">Jadikan Default</label>
                     <br>

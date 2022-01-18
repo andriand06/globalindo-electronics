@@ -6,7 +6,14 @@
     padding: 15px 0;
     font-size: 20px;
     align-items: center;
-  
+    @media screen and (max-width:360px)
+    {
+        font-size: 14px;
+    }
+    @media screen and (max-width:768px)
+    {
+        font-size: 16px;
+    }
     .image-wrapper {
       width: 23%;
       padding-right: 15px;

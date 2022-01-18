@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CollectionItemsRequest;
 use App\Models\CollectionItems;
 use App\Models\Collections;
+use Illuminate\Support\Facades\DB;
+
 class CollectionItemsController extends Controller
 {
     public function __construct()
@@ -17,10 +19,30 @@ class CollectionItemsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $items = CollectionItems::with('collections')->get();
-        return view('pages.items.index')->with(['items'=>$items]);
+        $email = '';
+        if(session('email'))
+        {
+          $email = session('email');
+        }
+        //dd($email);
+        $user = DB::table('users')->where('email',$email)->get();
+       
+        $keyword = $request->input('keyword');
+       
+        if($keyword != null)
+        {   
+
+            $items = CollectionItems::with('collections')
+                ->where('name','like',"%$keyword%")
+                ->get();
+        }
+        else
+        {
+            $items = CollectionItems::with('collections')->get();
+        }
+        return view('pages.items.index')->with(['items'=>$items, 'user'=>$user]);
     }
 
     /**
@@ -31,8 +53,14 @@ class CollectionItemsController extends Controller
     public function create()
     {
         $collections = Collections::All();
-
-        return view('pages.items.create')->with(['collections' => $collections]);
+        //user information
+        $email = '';
+        if(session('email'))
+        {
+        $email = session('email');
+        }
+        $user = DB::table('users')->where('email',$email)->get();
+        return view('pages.items.create')->with(['collections' => $collections,'user'=>$user]);
     }
 
     /**
@@ -45,7 +73,7 @@ class CollectionItemsController extends Controller
     {
         $data= $request->all();
         $data['image'] = $request->file('image')->store('assets/collections','public');
-
+        
         CollectionItems::create($data);
         session()->flash('success','Berhasil tambah data!');
         return redirect()->route('collectionitems.index');
@@ -68,9 +96,25 @@ class CollectionItemsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        //
+        if(session('role') == 'Owner')
+        {
+            $items = CollectionItems::findOrFail($id);
+            $collections = Collections::All();
+            $email = '';
+            if(session('email'))
+            {
+            $email = session('email');
+            }
+            $user = DB::table('users')->where('email',$email)->get();
+            return view('pages.items.edit')->with(['items'=>$items,'user'=>$user,'collections'=>$collections]);
+        }
+        else
+        {
+            return redirect()->route('collectionitems.index');
+        }
+      
     }
 
     /**
@@ -82,7 +126,20 @@ class CollectionItemsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(session('role') == 'Owner')
+        {
+            $data = $request->all();
+            $data['image'] = $request->file('image')->store('assets/collections','public');
+            $items = CollectionItems::findOrFail($id);
+            $items->update($data);
+            session()->flash('success','Berhasil Update Data!');
+            return redirect()->route('collectionitems.index');
+        }
+        else
+        {
+            return redirect()->route('collectionitems.index');
+        }
+     
     }
 
     /**
@@ -96,6 +153,21 @@ class CollectionItemsController extends Controller
         $items = CollectionItems::findOrFail($id);
         $items->delete();
         session()->flash('success','Berhasil Hapus Data');
+        return redirect()->route('collectionitems.index');
+    }
+    public function addquantity($id)
+    {
+      
+        $items = CollectionItems::findOrFail($id);
+        return view('pages.items.addquantity')->with(['items'=>$items]);
+    }
+    public function updatequantity(Request $request,$id)
+    {
+        $update = DB::table('collectionitems')
+        ->where('id',$id)
+        ->update([
+            'quantity' => DB::raw('quantity +' .$request->input('quantity'))
+        ]);
         return redirect()->route('collectionitems.index');
     }
 }

@@ -2,6 +2,7 @@
     <tr>
         <th>Nama</th>
         <td>{{ $data->name }}</td>
+      
     </tr>
     <tr>
         <th>Email</th>
@@ -30,21 +31,27 @@
                 <tr>
                     <th>Nama Koleksi</th>
                     <th>Nama Items</th>
+                    <th>Qty</th>
                     <th>Harga</th>
                 </tr>
-                @foreach ($item as $detail)
+                @foreach ($detailArr as $detail)
                     <tr>
-                        <td> {{ $detail->collections_id }}</td>
-                        <td> {{ $detail->name }}</td> 
-                        <td>{{ $detail->price }}</td>
+                        <td> {{ $detail[0]}}</td>
+                         <td> {{ $detail[1]}}</td>
+                       <td> {{ $detail[2] }}</td> 
+                        <td>{{ $detail[3] }}</td>
                     </tr>
                 @endforeach
-                    
-                
             </table>
         </td>
     </tr>
 </table>
+@if ($user[0]->role == 'Owner')
+
+<a href="{{route('transactions.print',$id)}}" class="btn btn-primary">Print</a>
+
+@endif
+
 {{-- <div class="row">
     <div class="col-4">
         <a href="{{ route('transactions.status',$item->id)}}?status=SUCCESS" class="btn btn-success btn-block">

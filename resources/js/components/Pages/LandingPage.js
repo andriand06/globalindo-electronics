@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../Parts/Header'
+import Header from '../Parts/Header/Header'
 import Hero from '../Parts/Hero'
 import Brand from '../Parts/Brand'
 import AboutUs from '../Parts/AboutUs'

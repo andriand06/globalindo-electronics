@@ -10,6 +10,7 @@ class TransactionDetailsController extends Controller
 {
     public function store(Request $request)
     {
+        
         $data = [
             'transactions_id' => $request->input('transactions_id'),
             'collections_id' => implode(",",$request->input('collections_id')),

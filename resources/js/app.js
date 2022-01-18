@@ -1,29 +1,29 @@
 require('./bootstrap');
-
 require('alpinejs');
 import React from 'react';
 import ReactDOM from 'react-dom'
 
 import { BrowserRouter as Router, Route, Switch, Redirect    } from 'react-router-dom';
 //Components
-import Header from './components/Parts/Header'
+import Header from './components/Parts/Header/Header'
 import Footer from './components/Parts/Footer'
 import LandingPage from './components/Pages/LandingPage'
 import ProductPage from './components/Pages/ProductPage'
 import ShopPage from './components/Pages/ShopPage'
 import CheckoutPage from './components/Pages/CheckoutPage'
+import PaymentPage from './components/Pages/PaymentPage';
 import LoginPage from './components/Pages/LoginPage'
 import SignUpPage from './components/Pages/SignUpPage'
 import NotFound from './components/Pages/NotFound'
 import Success from './components/Pages/Succes'
 
-import { auth,createUserProfileDocument } from './components/firebase/firebase.utils'
+import { auth,createUserProfileDocument, addCollectionAndDocuments } from './components/firebase/firebase.utils'
 import { onSnapshot } from '@firebase/firestore';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import {store, persistor} from './redux/store'
 import  setCurrentUser  from './redux/user/user.actions'
-
+import  selectCollectionsForPreview  from './redux/collection/collection.action'
 class App extends React.Component {
     constructor(){
         super();
@@ -32,8 +32,7 @@ class App extends React.Component {
         }
     }
     unsubscribeFromAuth = null;
-    componentDidMount() {
-        
+    componentDidMount() {    
         //if auth state changedthen get thedata and call createUserProfileDocument method
         this.unsubscribeFromAuth  = auth.onAuthStateChanged(async userAuth => {
             if(userAuth){
@@ -46,6 +45,7 @@ class App extends React.Component {
                 });
             }
             store.dispatch(setCurrentUser(userAuth));
+            addCollectionAndDocuments('collections',store.dispatch(selectCollectionsForPreview()));
             // this.setState({isLoggedIn : store.getState()});
         });
         
@@ -69,7 +69,7 @@ class App extends React.Component {
                         <Route exact path="/signin"><LoginPage /></Route>
                         <Route exact path="/signup"><SignUpPage /></Route>
                         <Route exact path="/success"><Success /></Route>
-                        
+                        <Route exact path="/payment/:tranId/:total" render={({match,location,history}) => <PaymentPage match={match} location={location} history={history} />} />                        
                     </Switch>
                 </Router>
         </div>

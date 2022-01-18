@@ -16,7 +16,8 @@
                 </a>
 
                 <div class="user-menu dropdown-menu">
-                    
+                    <div style="margin-left:25px;">{{$user[0]->name}}</div>
+                    <div style="margin-left:25px;">{{$user[0]->role}}</div>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <x-responsive-nav-link :href="route('logout')"

@@ -1,6 +1,6 @@
 import React, {useState, useRef } from 'react'
 import { connect } from 'react-redux';
-import Header from '../Parts/Header';
+import Header from '../Parts/Header/Header';
 import Footer from '../Parts/Footer';
 import Input from '../Elements/Input/index'
 import Button from '../Elements/Button/index'
@@ -44,6 +44,10 @@ const CheckoutPage = ({cartItems,total,history}) => {
         const transactionId = 'TRX' + dateInNumber;
         return transactionId;
     }
+    const generateNumber = (num) => {
+        const randNum = Math.ceil(Math.random() * 1000);
+        return parseFloat(num) + parseFloat(randNum);
+    }
     const form = useRef();
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -53,10 +57,9 @@ const CheckoutPage = ({cartItems,total,history}) => {
             email: email,
             phone: phone,
             address: address,
-            total : _total,
+            total : generateNumber(_total),
             status : _status,
         };
-      
         axios.post('/api/transactions/store', data)
             .then(res => {
                 console.log(res)
@@ -95,8 +98,9 @@ const CheckoutPage = ({cartItems,total,history}) => {
                 console.log(error.text);
             });
             e.target.reset();
+            cartItems.splice(0,cartItems.length);
             alert('data berhasil dikirim!');
-            history.push('/success');
+            history.push('/payment/'+data.transactionId+'/'+data.total);
     }
     const handleName = (e) => {
         setName(e.target.value);
@@ -137,10 +141,11 @@ const CheckoutPage = ({cartItems,total,history}) => {
                 ))
             }
             <div className="total"><span>Rp.{ FormatNumber(total)}</span></div>
+         
             <h3 className="clr-primary">Informasi Pembeli </h3>
-                <span>Silahkan isi data anda terlebih dahulu dan lakukan pembayaran ke no rekening yang tertera lalu Klik Already Paid</span>
+                <span className="pay-info">Silahkan isi data anda terlebih dahulu dan klik Tombol Pay Now</span>
             <div className="checkout-body">
-                <div className="left-body">
+                <div className="userdetail-body">
                     <form onSubmit={handleSubmit} ref={form}>
                         <Input type="text" name="name" label="Nama Lengkap" handleChange={handleName} required value={name} />
                         <Input type="text" name="email" label="Email Address" handleChange={handleEmail} required value={email} />
@@ -148,16 +153,8 @@ const CheckoutPage = ({cartItems,total,history}) => {
                         <Input type="text" name="address" label="Address Number" handleChange={handleAddress} required value={address} />
                         <Input type="hidden" name="total" value={_total} />
                         <Input type="hidden" name="status" value={_status}/>
-                        <Button type="submit" className="primary-button" isBlock>Already Paid</Button>
+                        <Button type="submit" className="primary-button" isBlock>Pay Now</Button>
                     </form>
-                </div>
-                <div className="right-body">
-                    <ul>
-                        <li>Total Biaya <span>Rp.{ FormatNumber(total) }</span></li>
-                        <li>Bank Transfer <span>BCA</span></li>
-                        <li>No.Rekening <span>8575180261</span></li>
-                        <li>Nama Penerima <span>Andrian Davinta</span></li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -167,6 +164,6 @@ const CheckoutPage = ({cartItems,total,history}) => {
     }
 const mapStateToProps = createStructuredSelector({
     cartItems: selectCartItems,
-    total: selectCartItemsTotal
+    total: selectCartItemsTotal,
 })
 export default connect(mapStateToProps)(CheckoutPage);

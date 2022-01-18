@@ -1,7 +1,7 @@
 import React from 'react'
-import Header from '../Parts/Header';
+import Header from '../Parts/Header/Header';
 import Footer from '../Parts/Footer';
-import ProductMenu from '../Parts/ProductMenu'
+import ProductMenu from '../Parts/ProductMenu/ProductMenu'
 const ProductPage = () => {
     return(
         <>

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import MenuItem from '../MenuItem';
-import '../Directory/index.scss';
+import { DirectoryMenuContainer } from './DirectoryMenu.styles';
 const Directory = () => {
     const [sections, setSections ] = useState([]);
 
@@ -14,15 +14,14 @@ const Directory = () => {
 
     return(
             sections.length > 0 && (
-                <div className="directory-menu">
-                {
-                    sections.map(({id, ...otherSectionProps}) => (
-                        <MenuItem key={id} {...otherSectionProps} />
-                    ))
-                }
-            </div>
+                <DirectoryMenuContainer>
+                    {
+                         sections.map(({id, ...otherSectionProps}) => (
+                            <MenuItem key={id} {...otherSectionProps} />
+                        ))
+                    }
+                </DirectoryMenuContainer>
             ) 
     );
 }
-
 export default Directory;

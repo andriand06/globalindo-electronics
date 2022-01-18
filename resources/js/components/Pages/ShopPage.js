@@ -1,7 +1,7 @@
 import React from 'react'
 import CollectionOverview from '../Parts/CollectionOverview';
 import CollectionPage from './CollectionPage';
-import Header from '../Parts/Header';
+import Header from '../Parts/Header/Header';
 import Footer from '../Parts/Footer';
 import { Route } from 'react-router-dom'
 

@@ -6,7 +6,6 @@ import { selectCollectionCollections } from '../../redux/collection/collection.s
 import CollectionPreview from './CollectionPreview';
 const CollectionOverview = () => {
     const [collections, setCollections] = useState([]);
-
     useEffect( async () => {
         await axios.get('/api/collections')
                 .then(res => {

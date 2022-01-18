@@ -1,5 +1,5 @@
 import {initializeApp} from 'firebase/app';
-import {getFirestore, setDoc, getDoc, doc,collection} from 'firebase/firestore';
+import {getFirestore, addDoc, setDoc, getDoc, doc, collection} from 'firebase/firestore';
 import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';  
 //get the config from our firebase project -> console.firebase.google.com
 const config =  {
@@ -50,6 +50,7 @@ const config =  {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
+      location.replace('/');
   }).catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -78,5 +79,12 @@ const config =  {
         const errorCode = error.code;
         const errormessage = error.message;
       }) 
+  }
+  
+
+  export const addCollectionAndDocuments = (collectionKey, objectsToAdd) => {
+    const collectionRef = addDoc(collection(db,collectionKey));
+
+    console.log(collectionRef);
   }
     

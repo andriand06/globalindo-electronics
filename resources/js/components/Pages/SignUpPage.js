@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '../Elements/Button/index'
 import Input from '../Elements/Input/index'
-import Header from '../Parts/Header'
+import Header from '../Parts/Header/Header'
 import Footer from '../Parts/Footer'
 import { createNewUser, createUserProfileDocument } from '../firebase/firebase.utils'
 
@@ -37,6 +37,9 @@ class SignUpPage extends React.Component {
                 password : '',
                 confirmPassword : '',
             });
+            alert('Berhasil Registrasi !');
+            location.replace('/signin');
+            
         }catch(error) {
             console.log(error);
         }

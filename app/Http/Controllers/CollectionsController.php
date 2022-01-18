@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CollectionsRequest;
 use App\Models\Collections;
 use App\Models\CollectionItems;
+use Illuminate\Support\Facades\DB;
 class CollectionsController extends Controller
 {
     public function __construct()
@@ -20,8 +21,15 @@ class CollectionsController extends Controller
     public function index()
     {
         $collections = Collections::All();
-
-        return view('pages.collections.index')->with(['collections' => $collections]);
+        //user information
+        $email = '';
+        if(session('email'))
+        {
+        $email = session('email');
+        }
+        //dd($email);
+        $user = DB::table('users')->where('email',$email)->get();
+        return view('pages.collections.index')->with(['collections' => $collections,'user'=>$user]);
     }
 
     /**
@@ -31,7 +39,15 @@ class CollectionsController extends Controller
      */
     public function create()
     {
-        return view('pages.collections.create');
+         //user information
+         $email = '';
+         if(session('email'))
+         {
+           $email = session('email');
+         }
+         //dd($email);
+       $user = DB::table('users')->where('email',$email)->get();
+        return view('pages.collections.create')->with(['user'=>$user]);
     }
 
     /**
@@ -69,8 +85,15 @@ class CollectionsController extends Controller
     public function edit($id)
     {
         $collections = Collections::findOrFail($id);
-
-        return view('pages.collections.edit')->with(['collections' => $collections]);
+         //user information
+         $email = '';
+         if(session('email'))
+         {
+           $email = session('email');
+         }
+         //dd($email);
+       $user = DB::table('users')->where('email',$email)->get();
+        return view('pages.collections.edit')->with(['collections' => $collections,'user' => $user]);
     }
 
     /**
@@ -108,10 +131,18 @@ class CollectionsController extends Controller
     {
         $collections = Collections::findOrFail($id);
         $items = CollectionItems::where('collections_id',$id)->get();
-
+         //user information
+         $email = '';
+         if(session('email'))
+         {
+           $email = session('email');
+         }
+         //dd($email);
+       $user = DB::table('users')->where('email',$email)->get();
         return view('pages.collections.items')->with([
             'collections' => $collections,
-            'items' => $items
+            'items' => $items,
+            'user' => $user
         ]);
     }
 }

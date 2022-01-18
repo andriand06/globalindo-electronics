@@ -21,5 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/collections',[CollectionsController::class,'all']);
+Route::get('/transactions',[TransactionsController::class,'all']);
+Route::get('/transactions/getstatus',[TransactionsController::class,'getStatus']);
 Route::post('/transactions/store',[TransactionsController::class, 'store']);
+Route::post('/transactions/setstatus',[TransactionsController::class, 'setStatus']);
 Route::post('/transactiondetails/store',[TransactionDetailsController::class,'store']);
+

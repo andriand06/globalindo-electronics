@@ -51,7 +51,7 @@
                                         </td>
                                         <td>
                                             @if ($i->status == "PENDING")
-                                                <a href="{{ route('transactions.status', $i->id) }}?status=SUCCESS" class="btn btn-success btn-sm"><i class="fa fa-check"></i></a>
+                                                <a href="{{ route('transactions.status', $i->id) }}?status=SUCCESS" class="btn btn-success btn-sm" onclick="return confirm('Mengubah Status menjadi Success akan mengubah Quantity Item yang ada di Transaksi, Ubah Status ?')"><i class="fa fa-check"></i></a>
                                                 <a href="{{ route('transactions.status', $i->id) }}?status=FAILED" class="btn btn-danger btn-sm"><i class="fa fa-times"></i></a>
                                             @endif
                                             <a href="#mymodal" data-remote="{{ route('transactions.show', $i->id)}}" data-toggle="modal" data-target="#mymodal" data-title="Detail Transaksi {{ $i->id}}" class="btn btn-info btn-sm">

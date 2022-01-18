@@ -33,6 +33,8 @@
             modal.find('.modal-title').html(button.data("title"));
         })
     })
+
+
 </script>
 
 <div class="modal" id="mymodal" tabindex="-1" role="dialog">

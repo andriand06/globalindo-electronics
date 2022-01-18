@@ -1,0 +1,3 @@
+export const CollectionActionTypes = {
+    SELECT_COLLECTION_FOR_PREVIEW : 'SELECT_COLLECTION_FOR_PREVIEW'
+}
