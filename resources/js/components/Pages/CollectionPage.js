@@ -22,7 +22,28 @@ class CollectionPage extends Component {
     render()
     {
         const { collection } = this.state;
-        return (
+        const { keyword } = this.props;
+        const regex = new RegExp(''+keyword+'','gi');
+        if(keyword != "")
+        {
+            return (
+                collection.length > 0 && (
+                <div className="collection-page">
+                    <h2 className="title">{collection[0].title}</h2>
+                    <div className="items">
+                        {
+                            collection[0].items.filter((item, idx) => item.name.match(regex)).map(item => (
+                                <CollectionItem key={item.id} item={item} />
+                            ))
+                        }
+                    </div>  
+                </div>
+                )
+            )
+        }
+        else
+        {
+            return (
                 collection.length > 0 && (
                 <div className="collection-page">
                     <h2 className="title">{collection[0].title}</h2>
@@ -36,6 +57,8 @@ class CollectionPage extends Component {
                 </div>
                 )
             )
+        }
+        
         
     }
 }

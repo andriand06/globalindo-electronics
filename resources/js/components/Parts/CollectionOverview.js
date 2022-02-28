@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import { selectCollectionCollections } from '../../redux/collection/collection.selector';
 import CollectionPreview from './CollectionPreview';
-const CollectionOverview = () => {
+const CollectionOverview = ({keyword}) => {
     const [collections, setCollections] = useState([]);
     useEffect( async () => {
         await axios.get('/api/collections')
@@ -18,7 +18,7 @@ const CollectionOverview = () => {
             <div className="collections-overview">
                  {
             collections.map(({id, ...otherProps})  => (
-                <CollectionPreview key={id} {...otherProps} />
+                <CollectionPreview key={id} keyword={keyword} {...otherProps} />
             ))
         }
             </div>

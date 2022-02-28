@@ -17,7 +17,7 @@
                         <option value="{{ $collection->id }}">{{ $collection->name}}</option>  
                     @endforeach
                     </select>
-                    <label for="name" class="form-control-label">Nama Items</label>
+                    <label for="name" class="form-control-label">Name</label>
                     <input type="text" class="form-control @error('name')
                         is-invalid
                     @enderror" name="name" required value="{{ old('name')}}">
@@ -26,8 +26,8 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="price" class="form-control-label">Price Items</label>
-                    <input price="text" class="form-control @error('price')
+                    <label for="price" class="form-control-label">Price</label>
+                    <input type="text" class="form-control @error('price')
                         is-invalid
                     @enderror" name="price" required value="{{ old('price')}}">
                     @error('price')
@@ -35,20 +35,20 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="image" class="form-control-label">Image Items</label>
+                    <label for="image" class="form-control-label">Image</label>
                     <input type="file" class="form-control @error('image')
                         is-invalid
                     @enderror" name="image" accept="image/*" required value="{{ old('image')}}">
                 </div>
                 <div class="form-group">
-                    <label for="quantity" class="form-control-label">Quantity Items</label>
+                    <label for="quantity" class="form-control-label">Quantity</label>
                     <input type="number" class="form-control @error('quantity')
                         is-invalid
                     @enderror" name="quantity" required value="{{ old('quantity')}}">
                 </div>      
                 @if ($user[0]->role == 'Owner')
                     <div class="form-group">
-                        <label for="base_price" class="form-control-label">Base Price Items</label>
+                        <label for="base_price" class="form-control-label">Base Price</label>
                         <input type="number" class="form-control @error('base_price')
                             is-invalid
                         @enderror" name="base_price" required value="{{ old('base_price')}}">
@@ -61,8 +61,42 @@
                     @enderror" name="base_price" required value="0">
                 </div>
                 @endif
-           
-               
+                <div class="form-group">
+                    <label for="description" class="form-control-label">Description</label>
+                    <input type="text" class="form-control @error('description')
+                        is-invalid
+                    @enderror" name="description" required value="{{ old('description')}}">
+                    @error('description')
+                        <div class="text-muted">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="brand" class="form-control-label">Brand</label>
+                    <input type="text" class="form-control @error('brand')
+                        is-invalid
+                    @enderror" name="brand" required value="{{ old('brand')}}">
+                    @error('brand')
+                        <div class="text-muted">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="type" class="form-control-label">Type</label>
+                    <input type="text" class="form-control @error('type')
+                        is-invalid
+                    @enderror" name="type" required value="{{ old('type')}}">
+                    @error('type')
+                        <div class="text-muted">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="garansi" class="form-control-label">Garansi</label>
+                    <input type="text" class="form-control @error('garansi')
+                        is-invalid
+                    @enderror" name="garansi" required value="{{ old('garansi')}}">
+                    @error('garansi')
+                        <div class="text-muted">{{ $message }}</div>
+                    @enderror
+                </div>
                 <div class="form-group">
                     <label for="is_default" class="form-control-label">Jadikan Default</label>
                     <br>

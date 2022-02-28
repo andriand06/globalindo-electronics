@@ -19,6 +19,7 @@ class LoginPage extends React.Component {
         const {email, password } = this.state;
         try{
             await signInWithEmail(email,password);
+            window.open('/');
         }catch(error){
             console.log(error);
         }

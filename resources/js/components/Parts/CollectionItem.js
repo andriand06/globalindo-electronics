@@ -8,12 +8,14 @@ const CollectionItem = ({ key,item, addItem}) => {
     
     return (
     <div key={key} className="collection-item">
+        <a href={`/product/${item.id}`}>
         <div className="image" style={{ backgroundImage: `url(${image})`}}/>
         <div className="collection-footer">
-            <span className="name">{name}</span>
+            <span className="name" id={name}>{name}</span>
             <span className="price">Rp {FormatNumber(price)}</span>    
         </div>
         <Button className="cart-btn" isBlock onClick={() => addItem(item)}>Add To Cart</Button>
+        </a>
     </div>
     );
 }; 

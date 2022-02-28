@@ -33,6 +33,10 @@
                                         @if ($user[0]->role == 'Owner')
                                         <th>Base Price</th>
                                         @endif
+                                        <th>Description</th>
+                                        <th>Brand</th>
+                                        <th>Type</th>
+                                        <th>Garansi</th>
                                         <th>Is Default</th>
                                         <th>Action</th>
                                     </tr>
@@ -51,6 +55,10 @@
                                         @if ($user[0]->role == 'Owner')
                                         <td>{{ $i->base_price }}</td>
                                         @endif
+                                        <td>{{ $i->description }}</td>
+                                        <td>{{ $i->brand }}</td>
+                                        <td>{{ $i->type }}</td>
+                                        <td>{{ $i->garansi }}</td>
                                         <td>{{ $i->is_default ? 'Ya' : 'Tidak'}}</td>
                                         <td>
                                             <form action="{{ route('collectionitems.destroy', $i->id)}}" method="POST" class="d-inline">

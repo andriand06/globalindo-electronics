@@ -19,6 +19,10 @@ class CollectionItems extends Model
         'image',
         'quantity',
         'base_price',
+        'description',
+        'brand',
+        'type',
+        'garansi',
         'is_default'
     ];
 

@@ -98,8 +98,7 @@ class CollectionItemsController extends Controller
      */
     public function edit($id, Request $request)
     {
-        if(session('role') == 'Owner')
-        {
+       
             $items = CollectionItems::findOrFail($id);
             $collections = Collections::All();
             $email = '';
@@ -108,12 +107,14 @@ class CollectionItemsController extends Controller
             $email = session('email');
             }
             $user = DB::table('users')->where('email',$email)->get();
-            return view('pages.items.edit')->with(['items'=>$items,'user'=>$user,'collections'=>$collections]);
-        }
-        else
-        {
-            return redirect()->route('collectionitems.index');
-        }
+            if($user[0]->role == 'Owner')
+            {
+                return view('pages.items.edit')->with(['items'=>$items,'user'=>$user,'collections'=>$collections]);
+            }
+            else
+            {
+                return redirect()->route('collectionitems.index');
+            }
       
     }
 

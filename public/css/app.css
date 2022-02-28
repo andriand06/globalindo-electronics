@@ -20576,15 +20576,37 @@ textarea.form-control-lg {
     height: 150px;
   }
 }
-.shop-page .collections-overview .collection-preview .preview .collection-item .image {
+.shop-page .collections-overview .collection-preview .preview .collection-item a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 22vw;
+  height: 300px;
+  color: black;
+}
+.shop-page .collections-overview .collection-preview .preview .collection-item a:hover {
+  text-decoration: none;
+}
+@media screen and (max-width: 768px) {
+  .shop-page .collections-overview .collection-preview .preview .collection-item a {
+    height: 200px;
+  }
+}
+@media screen and (max-width: 360px) {
+  .shop-page .collections-overview .collection-preview .preview .collection-item a {
+    height: 150px;
+  }
+}
+.shop-page .collections-overview .collection-preview .preview .collection-item a .image {
   width: 100%;
   height: 95%;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   margin-bottom: 5px;
   border: 0.5px solid #2d2d2d;
 }
-.shop-page .collections-overview .collection-preview .preview .collection-item .collection-footer {
+.shop-page .collections-overview .collection-preview .preview .collection-item a .collection-footer {
   width: 100%;
   height: 5%;
   font-size: 18px;
@@ -20592,22 +20614,22 @@ textarea.form-control-lg {
   justify-content: space-between;
 }
 @media screen and (max-width: 768px) {
-  .shop-page .collections-overview .collection-preview .preview .collection-item .collection-footer {
+  .shop-page .collections-overview .collection-preview .preview .collection-item a .collection-footer {
     font-size: 10px;
   }
 }
 @media screen and (max-width: 360px) {
-  .shop-page .collections-overview .collection-preview .preview .collection-item .collection-footer {
+  .shop-page .collections-overview .collection-preview .preview .collection-item a .collection-footer {
     display: flex;
     flex-direction: column;
   }
 }
-.shop-page .collections-overview .collection-preview .preview .collection-item .collection-footer .name {
+.shop-page .collections-overview .collection-preview .preview .collection-item a .collection-footer .name {
   width: 90%;
   margin-bottom: 15px;
 }
-.shop-page .collections-overview .collection-preview .preview .collection-item .cart-btn {
-  width: 190px;
+.shop-page .collections-overview .collection-preview .preview .collection-item a .cart-btn {
+  width: 220px;
   justify-content: center;
   opacity: 0.7;
   border: 1px solid black;
@@ -20616,14 +20638,14 @@ textarea.form-control-lg {
   display: none;
   transition: 0.3s ease-in-out;
 }
-.shop-page .collections-overview .collection-preview .preview .collection-item .cart-btn:hover {
+.shop-page .collections-overview .collection-preview .preview .collection-item a .cart-btn:hover {
   background-color: black;
   color: white;
 }
-.shop-page .collections-overview .collection-preview .preview .collection-item:hover .image {
+.shop-page .collections-overview .collection-preview .preview .collection-item a:hover .image {
   opacity: 0.8;
 }
-.shop-page .collections-overview .collection-preview .preview .collection-item:hover .cart-btn {
+.shop-page .collections-overview .collection-preview .preview .collection-item a:hover .cart-btn {
   opacity: 0.85;
   display: flex;
 }
@@ -20662,15 +20684,37 @@ textarea.form-control-lg {
     height: 150px;
   }
 }
-.shop-page .collection-page .items .collection-item .image {
+.shop-page .collection-page .items .collection-item a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 22vw;
+  height: 300px;
+  color: black;
+}
+.shop-page .collection-page .items .collection-item a:hover {
+  text-decoration: none;
+}
+@media screen and (max-width: 768px) {
+  .shop-page .collection-page .items .collection-item a {
+    height: 200px;
+  }
+}
+@media screen and (max-width: 360px) {
+  .shop-page .collection-page .items .collection-item a {
+    height: 150px;
+  }
+}
+.shop-page .collection-page .items .collection-item a .image {
   width: 100%;
   height: 95%;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   margin-bottom: 5px;
   border: 0.5px solid #2d2d2d;
 }
-.shop-page .collection-page .items .collection-item .collection-footer {
+.shop-page .collection-page .items .collection-item a .collection-footer {
   width: 100%;
   height: 5%;
   font-size: 18px;
@@ -20678,21 +20722,21 @@ textarea.form-control-lg {
   justify-content: space-between;
 }
 @media screen and (max-width: 768px) {
-  .shop-page .collection-page .items .collection-item .collection-footer {
+  .shop-page .collection-page .items .collection-item a .collection-footer {
     font-size: 10px;
   }
 }
 @media screen and (max-width: 360px) {
-  .shop-page .collection-page .items .collection-item .collection-footer {
+  .shop-page .collection-page .items .collection-item a .collection-footer {
     flex-direction: column;
   }
 }
-.shop-page .collection-page .items .collection-item .collection-footer .name {
+.shop-page .collection-page .items .collection-item a .collection-footer .name {
   width: 90%;
   margin-bottom: 15px;
 }
-.shop-page .collection-page .items .collection-item .cart-btn {
-  width: 200px;
+.shop-page .collection-page .items .collection-item a .cart-btn {
+  width: 220px;
   justify-content: center;
   opacity: 0.7;
   border: 1px solid black;
@@ -20702,18 +20746,18 @@ textarea.form-control-lg {
   transition: 0.3s ease-in-out;
 }
 @media screen and (max-width: 768px) {
-  .shop-page .collection-page .items .collection-item .cart-btn {
+  .shop-page .collection-page .items .collection-item a .cart-btn {
     width: 100%;
   }
 }
-.shop-page .collection-page .items .collection-item .cart-btn:hover {
+.shop-page .collection-page .items .collection-item a .cart-btn:hover {
   background-color: black;
   color: white;
 }
-.shop-page .collection-page .items .collection-item:hover .image {
+.shop-page .collection-page .items .collection-item a:hover .image {
   opacity: 0.8;
 }
-.shop-page .collection-page .items .collection-item:hover .cart-btn {
+.shop-page .collection-page .items .collection-item a:hover .cart-btn {
   opacity: 0.85;
   display: flex;
 }

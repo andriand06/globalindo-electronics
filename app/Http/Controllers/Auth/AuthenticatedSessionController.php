@@ -50,6 +50,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
         $request->session()->pull('email');
+        $request->session()->pull('role');
         return redirect('/');
     }
 }

@@ -41,7 +41,11 @@ Route::get('/{path?}',function () {
 })->where('path','product|shop|signin|signup|checkout|payment');
 Route::get('/{path?}/{subpath?}',function () {
     return view('main');
-})->where('subpath','largehouseholdappliances|smallhouseholdappliances|itequipments|electricaltools|monitoringcontrolinstruments');
+});
+// Route::get('/{path?}/{subpath?}',function () {
+//     return view('main');
+// })->where('subpath','largehouseholdappliances|smallhouseholdappliances|itequipments|electricaltools|monitoringcontrolinstruments');
+
 Route::get('/{path?}/{subpath?}/{subsubpath?}',function () {
     return view('main');
 });
